@@ -28,6 +28,11 @@ DEBUG = os.environ['DEBUG_SETTING']
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost",".herokuapp.com"]
 
+# set GEOS library path
+if DEBUG == False:
+    GEOS_LIBRARY_PATH = "{}/libgeos_c.so".format(os.environ.get('GEOS_LIBRARY_PATH'))
+    GDAL_LIBRARY_PATH = "{}/libgdal.so".format(os.environ.get('GDAL_LIBRARY_PATH'))
+    PROJ4_LIBRARY_PATH = "{}/libproj.so".format(os.environ.get('PROJ4_LIBRARY_PATH'))
 
 # Application definition
 
@@ -38,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'djgeojson',
+    'leaflet',
+    'bootstrap3',
     'maps',
 ]
 
@@ -56,7 +64,7 @@ ROOT_URLCONF = 'bhoomi.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,13 +83,19 @@ WSGI_APPLICATION = 'bhoomi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# instead of hardcoding credentials, use config variables
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+DATABASES = {'default': dj_database_url.config(default=os.environ['DATABASE_URL'])}
+DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -118,5 +132,19 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
+# note: be sure to properly configure 'STATIC_URL' in each environment
+# local environment: set to /static/
+# production environment: set to Amazon AWS S3 bucket (and make public)
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = os.environ['STATIC_URL']
+# STATIC_URL = '/static/'
 
-STATIC_URL = '/static/'
+# Leaflet
+LEAFLET_CONFIG = {
+  'SPATIAL_EXTENT': (-125, 32, -117, 42),
+  'DEFAULT_CENTER': (37,-122),
+  'DEFAULT_ZOOM': 7,
+  'MIN_ZOOM': 1,
+  'MAX_ZOOM': 15,
+}

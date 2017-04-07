@@ -20,5 +20,5 @@ from maps import views as maps_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', maps_views.main, name='index'),
+    url(r'^$', maps_views.map, name='map'),
 ]

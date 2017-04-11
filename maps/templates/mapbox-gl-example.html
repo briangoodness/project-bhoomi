@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+{% load leaflet_tags %}
+{% load bootstrap3 %}
+
+<html>
+<head>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.css' rel='stylesheet' />
+
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  {% leaflet_js %}
+  {% leaflet_css %}
+
+  <title>Sample Map</title>
+</head>
+<body>
+  <div id='map' style='width: 800px; height: 500px;'></div>
+  <script>
+    mapboxgl.accessToken = "{{ token }}";
+    //var mapdata = '{% url "dhs-clusters-data" %}';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      //style: 'mapbox://styles/mapbox/satellite-v9',
+      style: 'mapbox://styles/mapbox/outdoors-v9',
+      center: [29.8739, -1.9403], // starting position
+      zoom: 7, // starting zoom
+      maxZoom: 16,
+      minZoom: 7,
+    });
+    map.on('load', function () {
+      map.addLayer({
+          "id": "points",
+          "type": "symbol",
+          "source": {
+              "type": "geojson",
+              "data":'{% url "dhs-clusters-data" %}'
+            },
+          "layout": {
+                      "icon-image": "{icon}-15",
+                      "text-field": "{title}",
+                      "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                      "text-offset": [0, 0.6],
+                      "text-anchor": "top"
+            }
+        });
+    });
+    //var myLayer = L.mapbox.featureLayer().setGeoJSON(mapdata).addTo(map);
+  </script>
+</body>
+</html>

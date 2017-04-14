@@ -23,6 +23,6 @@ from maps.models import Region, DHS_cluster
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', maps_views.map, name='map'),
+    url(r'^(?P<country>[a-z]+)$', maps_views.map, name='map'),
     url(r'^dhs-data/$', GeoJSONLayerView.as_view(model=DHS_cluster, properties=('dhs_wealth_idx','latitude','longitude')), name='dhs-clusters-data'),
 ]

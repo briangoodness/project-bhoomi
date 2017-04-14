@@ -7,8 +7,8 @@
 <html>
 <head>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-  <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
-  <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.css' rel='stylesheet' />
 
   {% bootstrap_css %}
   {% bootstrap_javascript %}
@@ -18,20 +18,223 @@
   <title>Sample Map</title>
 </head>
 <body>
-  <div id='map' style='width: 800px; height: 500px;'></div>
+
+  <style>
+      #menu {
+          background: #fff;
+          position: absolute;
+          z-index: 1;
+          top: 10px;
+          right: 10px;
+          border-radius: 3px;
+          width: 120px;
+          border: 1px solid rgba(0,0,0,0.4);
+          font-family: 'Open Sans', sans-serif;
+      }
+
+      #menu a {
+          font-size: 13px;
+          color: #404040;
+          display: block;
+          margin: 0;
+          padding: 0;
+          padding: 10px;
+          text-decoration: none;
+          border-bottom: 1px solid rgba(0,0,0,0.25);
+          text-align: center;
+      }
+
+      #menu a:last-child {
+          border: none;
+      }
+
+      #menu a:hover {
+          background-color: #f8f8f8;
+          color: #404040;
+      }
+
+      #menu a.active {
+          background-color: #3887be;
+          color: #ffffff;
+      }
+
+      #menu a.active:hover {
+          background: #3074a4;
+      }
+  </style>
+
+  <style>
+      #countries {
+          background: #fff;
+          position: absolute;
+          z-index: 1;
+          top: 100px;
+          right: 10px;
+          border-radius: 3px;
+          width: 120px;
+          border: 1px solid rgba(0,0,0,0.4);
+          font-family: 'Open Sans', sans-serif;
+      }
+
+      #countries a {
+          font-size: 13px;
+          color: #404040;
+          display: block;
+          margin: 0;
+          padding: 0;
+          padding: 10px;
+          text-decoration: none;
+          border-bottom: 1px solid rgba(0,0,0,0.25);
+          text-align: center;
+      }
+
+      #countries a:last-child {
+          border: none;
+      }
+
+      #countries a:hover {
+          background-color: #f8f8f8;
+          color: #404040;
+      }
+
+      #countries a.active {
+          background-color: #BF3F3F;
+          color: #ffffff;
+      }
+
+      #countries a.active:hover {
+          background: #722626;
+      }
+  </style>
+
+  <div id='map' style='width: 100%; height: 500px;'></div>
+
+  <div id='style-menu'>
+    <input id='basic' type='radio' name='rtoggle' value='basic' checked='checked'>
+    <label for='basic'>basic</label>
+    <input id='streets' type='radio' name='rtoggle' value='streets'>
+    <label for='streets'>streets</label>
+    <input id='bright' type='radio' name='rtoggle' value='bright'>
+    <label for='bright'>bright</label>
+    <input id='light' type='radio' name='rtoggle' value='light'>
+    <label for='light'>light</label>
+    <input id='dark' type='radio' name='rtoggle' value='dark'>
+    <label for='dark'>dark</label>
+    <input id='outdoors' type='radio' name='rtoggle' value='outdoors'>
+    <label for='outdoors'>outdoors</label>
+    <input id='satellite' type='radio' name='rtoggle' value='satellite'>
+    <label for='satellite'>satellite</label>
+  </div>
+
+  <nav id="menu"></nav>
+
+  <nav id="countries"></nav>
+
   <script>
-    L.mapbox.accessToken = "{{ token }}";
-    var mapdata = '{% url "dhs-clusters-data" %}';
-    var mapGeo = L.mapbox.Map({
+
+    // load MapBox token
+    mapboxgl.accessToken = "{{ token }}";
+
+    // configure map load
+    var clusterCenters = {
+        "id": "dhs-clusters",
+        "type": "circle",
+        "source": {
+            "type": "geojson",
+            "data":'{% url "dhs-clusters-data" %}'
+          },
+        "layout": {
+                    'visibility': 'visible'
+          },
+        'paint': {
+          'circle-radius': 3,
+          'circle-color': 'rgba(55,148,179,1)'
+        }
+      }
+
+    // initialize map
+    var map = new mapboxgl.Map({
       container: 'map',
-      //style: 'mapbox://styles/mapbox/satellite-v9',
-      style: 'mapbox://styles/mapbox/outdoors-v9',
-      center: [29.8739, -1.9403], // starting position
-      zoom: 7, // starting zoom
-      maxZoom: 16,
-      minZoom: 7,
+      //style: 'mapbox://styles/mapbox/satellite-v9?optimize=true',
+      style: 'mapbox://styles/mapbox/outdoors-v9?optimize=true',
+      //center: [29.8739, -1.9403], // starting position
+      center: [{{ center_lng }}, {{ center_lat }}],
+      zoom: {{ zoom_level }}, // starting zoom
+      maxZoom: {{ max_zoom }},
+      minZoom: {{ min_zoom }},
+      //maxBounds: new mapboxgl.LngLatBounds([left, top], [right, bottom]) // maximum map bounds
     });
-    var myLayer = L.mapbox.featureLayer().setGeoJSON(mapdata).addTo(mapGeo);
+    map.on('load', function () {
+      map.addLayer(clusterCenters);
+    });
+
+    // retrieve map style
+    var layerList = document.getElementById('style-menu');
+    var inputs = layerList.getElementsByTagName('input');
+
+    // switch map style
+    function switchLayer(layer) {
+      var layerId = layer.target.id;
+      map.setStyle('mapbox://styles/mapbox/' + layerId + '-v9?optimize=true');
+      map.on('style.load', function() {
+        map.addLayer('dhs-clusters');
+      });
+    }
+
+    for (var i = 0; i < inputs.length; i++) {
+      inputs[i].onclick = switchLayer;
+    }
+
+    // switch countries
+    var toggleableCountryIds = [ 'Ghana', 'Malawi', 'Rwanda', 'Tanzania' ];
+    for (var i = 0; i < toggleableCountryIds.length; i++) {
+      var id = toggleableCountryIds[i];
+
+      var link = document.createElement('a');
+      link.href = id.toLowerCase();
+      link.className = 'active';
+      link.textContent = id;
+
+      link.onclick = function (e) {
+      };
+
+      var layers = document.getElementById('countries');
+      layers.appendChild(link);
+    }
+
+    // toggle layers
+    var dataLayers = {'dhs-clusters':'DHS Clusters'}
+    var toggleableLayerIds = [];
+    for(var key in dataLayers) { toggleableLayerIds.push(key); }
+
+    for (var i = 0; i < toggleableLayerIds.length; i++) {
+      var id = toggleableLayerIds[i];
+
+      var link = document.createElement('a');
+      link.href = '#';
+      link.className = 'active';
+      link.textContent = dataLayers[id];
+
+      link.onclick = function (e) {
+          var clickedLayer = id;
+          e.preventDefault();
+          e.stopPropagation();
+
+          var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+          if (visibility === 'visible') {
+              map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+              this.className = '';
+          } else {
+              this.className = 'active';
+              map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+          }
+      };
+
+      var layers = document.getElementById('menu');
+      layers.appendChild(link);
+    }
+
   </script>
 </body>
 </html>

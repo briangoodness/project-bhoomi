@@ -152,6 +152,23 @@
         }
       }
 
+    // configure map load
+    var regionPredictions = {
+        "id": "region-predictions",
+        "type": "fill",
+        "source": {
+            "type": "geojson",
+            "data":'{% url "regions-predictions-data" %}'
+          },
+        "layout": {
+                    'visibility': 'visible'
+          },
+        'paint': {
+          'fill-color': '#008888',
+          'fill-opacity': 0.8
+        }
+      }
+
     // initialize map
     var map = new mapboxgl.Map({
       container: 'map',
@@ -166,6 +183,7 @@
     });
     map.on('load', function () {
       map.addLayer(clusterCenters);
+      map.addLayer(regionPredictions);
     });
 
     // retrieve map style

@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^(?P<country>[a-z]+)$', maps_views.map, name='map'),
     url(r'^dhs-data/$', GeoJSONLayerView.as_view(model=DHS_cluster, properties=('dhs_wealth_idx','latitude','longitude')), name='dhs-clusters-data'),
+    url(r'^regions-data/$', GeoJSONLayerView.as_view(model=Region, properties=('name','predicted_wealth_idx','wealth_decile')), name='regions-predictions-data'),
 ]

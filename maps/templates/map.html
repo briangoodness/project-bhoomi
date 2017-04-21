@@ -94,11 +94,11 @@
           <li><a href="#">Data</a></li>
           <li><a href="#">About</a></li>
         </ul>
-        <form class="navbar-form navbar-right">
+        <form id="search-form" class="navbar-form navbar-right">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
+            <input id="search-term" type="text" class="form-control" placeholder="Search">
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
+          <button id="search-button" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
         </form>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -250,7 +250,18 @@
 
       var layers = document.getElementById('menu');
       layers.appendChild(link);
+
+      //search
+      search_button = document.getElementById('search-button');
+      search_button.onclick = function (e) {
+          search_term = document.getElementById('search-term').value;
+
+          search_form = document.getElementById('search-form');
+          search_form.action = search_term;
+          search_form.submit();
+      };
     }
+
 
   </script>
 </body>

@@ -96,7 +96,8 @@
         </ul>
         <form id="search-form" class="navbar-form navbar-right">
           <div class="form-group">
-            <input id="search-term" type="text" class="form-control" placeholder="Search">
+            <input id="search-term" type="text" class="form-control" placeholder="Search" list="search-term-list">
+            <datalist id="search-term-list"></datalist>
           </div>
           <button id="search-button" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
         </form>
@@ -198,9 +199,10 @@
       inputs[i].onclick = switchLayer;
     }
 
-    // switch countries
+    // load country options
     var toggleableCountryIds = [ 'Ghana', 'Malawi', 'Rwanda', 'Tanzania' ];
     for (var i = 0; i < toggleableCountryIds.length; i++) {
+      //load explore tab
       var id = toggleableCountryIds[i];
 
       var list_element = document.createElement('li');
@@ -217,6 +219,14 @@
 
       var country_list = document.getElementById('country-list');
       country_list.appendChild(list_element);
+
+      //load search term list
+      var search_term_list = document.getElementById('search-term-list');
+
+      var option = document.createElement('option');
+      option.value = id;
+
+      search_term_list.append(option);
     }
 
     // toggle layers
@@ -252,11 +262,13 @@
       layers.appendChild(link);
 
       //search
-      search_button = document.getElementById('search-button');
+      var search_button = document.getElementById('search-button');
       search_button.onclick = function (e) {
-          search_term = document.getElementById('search-term').value;
+          var search_term = document.getElementById('search-term').value.toLowerCase();
 
-          search_form = document.getElementById('search-form');
+          //validate input
+
+          var search_form = document.getElementById('search-form');
           search_form.action = search_term;
           search_form.submit();
       };

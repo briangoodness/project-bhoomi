@@ -24,7 +24,7 @@
           background: #fff;
           position: absolute;
           z-index: 1;
-          top: 10px;
+          top: 70px;
           right: 10px;
           border-radius: 3px;
           width: 120px;
@@ -64,48 +64,46 @@
   </style>
 
   <style>
-      #countries {
-          background: #fff;
-          position: absolute;
-          z-index: 1;
-          top: 100px;
-          right: 10px;
-          border-radius: 3px;
-          width: 120px;
-          border: 1px solid rgba(0,0,0,0.4);
-          font-family: 'Open Sans', sans-serif;
-      }
-
-      #countries a {
-          font-size: 13px;
-          color: #404040;
-          display: block;
-          margin: 0;
-          padding: 0;
-          padding: 10px;
-          text-decoration: none;
-          border-bottom: 1px solid rgba(0,0,0,0.25);
-          text-align: center;
-      }
-
-      #countries a:last-child {
-          border: none;
-      }
-
-      #countries a:hover {
-          background-color: #f8f8f8;
-          color: #404040;
-      }
-
-      #countries a.active {
-          background-color: #BF3F3F;
-          color: #ffffff;
-      }
-
-      #countries a.active:hover {
-          background: #722626;
+      .no-margin-bottom {
+          margin-bottom: 0px !important;
       }
   </style>
+
+  <!-- navbar -->
+  <nav class="navbar navbar-default navbar-static-top navbar-inverse no-margin-bottom">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Bhoomi</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <span class="caret"></span></a>
+            <ul id="country-list" class="dropdown-menu">
+            </ul>
+          </li>
+          <li><a href="#">Data</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+        <form id="search-form" class="navbar-form navbar-right">
+          <div class="form-group">
+            <input id="search-term" type="text" class="form-control" placeholder="Search" list="search-term-list">
+            <datalist id="search-term-list"></datalist>
+          </div>
+          <button id="search-button" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
 
   <div id='map' style='width: 100%; height: 500px;'></div>
 
@@ -127,8 +125,6 @@
   </div>
 
   <nav id="menu"></nav>
-
-  <nav id="countries"></nav>
 
   <script>
 
@@ -203,10 +199,13 @@
       inputs[i].onclick = switchLayer;
     }
 
-    // switch countries
+    // load country options
     var toggleableCountryIds = [ 'Ghana', 'Malawi', 'Rwanda', 'Tanzania' ];
     for (var i = 0; i < toggleableCountryIds.length; i++) {
+      //load explore tab
       var id = toggleableCountryIds[i];
+
+      var list_element = document.createElement('li');
 
       var link = document.createElement('a');
       link.href = id.toLowerCase();
@@ -216,8 +215,18 @@
       link.onclick = function (e) {
       };
 
-      var layers = document.getElementById('countries');
-      layers.appendChild(link);
+      list_element.appendChild(link);
+
+      var country_list = document.getElementById('country-list');
+      country_list.appendChild(list_element);
+
+      //load search term list
+      var search_term_list = document.getElementById('search-term-list');
+
+      var option = document.createElement('option');
+      option.value = id;
+
+      search_term_list.append(option);
     }
 
     // toggle layers
@@ -251,7 +260,20 @@
 
       var layers = document.getElementById('menu');
       layers.appendChild(link);
+
+      //search
+      var search_button = document.getElementById('search-button');
+      search_button.onclick = function (e) {
+          var search_term = document.getElementById('search-term').value.toLowerCase();
+
+          //validate input
+
+          var search_form = document.getElementById('search-form');
+          search_form.action = search_term;
+          search_form.submit();
+      };
     }
+
 
   </script>
 </body>

@@ -3,3 +3,4 @@ venv/
 *sqlite3*
 bhoomi/staticfiles/*
 *csv*
+maps/data/*

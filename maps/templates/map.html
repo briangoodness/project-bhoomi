@@ -144,7 +144,8 @@
           },
         'paint': {
           'circle-radius': 3,
-          'circle-color': 'rgba(55,148,179,1)'
+          //'circle-color': 'rgba(55,148,179,1)'
+          'circle-color':'#43a2ca'
         }
       }
 
@@ -169,7 +170,8 @@
     var map = new mapboxgl.Map({
       container: 'map',
       //style: 'mapbox://styles/mapbox/satellite-v9?optimize=true',
-      style: 'mapbox://styles/mapbox/outdoors-v9?optimize=true',
+      // style: 'mapbox://styles/mapbox/outdoors-v9?optimize=true',
+      style: 'mapbox://styles/briangoodness/cj1wia7ax00162smrphmw1pp9',
       //center: [29.8739, -1.9403], // starting position
       center: [{{ center_lng }}, {{ center_lat }}],
       zoom: {{ zoom_level }}, // starting zoom
@@ -179,7 +181,7 @@
     });
     map.on('load', function () {
       map.addLayer(clusterCenters);
-      map.addLayer(regionPredictions);
+      //map.addLayer(regionPredictions);
     });
 
     // retrieve map style

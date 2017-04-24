@@ -59,7 +59,7 @@ def main(argv):
     df['data_year'] = data_year
 
     # select columns to load
-    cols = ['id',
+    cols = [#'id',
             'country',
             'data_year',
             'dhs_wealth_idx',
@@ -74,6 +74,7 @@ def main(argv):
     conn = create_engine(conn_info, pool_size=20, max_overflow=10)
     t0 = time.time()
     df[cols].to_sql('maps_dhs_cluster', con=conn, if_exists='append', index=False)
+
     print(time.time() - t0)
 
 if __name__ == "__main__":

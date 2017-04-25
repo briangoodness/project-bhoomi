@@ -24,6 +24,8 @@ from maps.models import Region, DHS_cluster
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^(?P<country>[a-z]+)$', maps_views.map, name='map'),
-    url(r'^dhs-data/$', GeoJSONLayerView.as_view(model=DHS_cluster, properties=('dhs_wealth_idx','latitude','longitude')), name='dhs-clusters-data'),
-    url(r'^regions-data/$', GeoJSONLayerView.as_view(model=Region, properties=('name','predicted_wealth_idx','wealth_decile')), name='regions-predictions-data'),
+    url(r'^dhs-data.geojson?.*$', maps_views.DHS_ClusterLayer.as_view(model=DHS_cluster, properties=('country','data_year','dhs_wealth_idx','latitude','longitude')), name='dhs-clusters-data-country'),
+    url(r'^dhs-data$', GeoJSONLayerView.as_view(model=DHS_cluster, properties=('country','data_year','dhs_wealth_idx','latitude','longitude')), name='dhs-clusters-data'),
+    url(r'^regions-data.geojson?.*$', maps_views.RegionLayer.as_view(model=Region, properties=('country','name','predicted_wealth_idx','wealth_decile','admin_level')), name='regions-predictions-data-country'),
+    url(r'^regions-data/$', GeoJSONLayerView.as_view(model=Region, properties=('country','name','predicted_wealth_idx','wealth_decile','admin_level')), name='regions-predictions-data'),
 ]

@@ -8,6 +8,7 @@ class Region(models.Model):
     name = models.CharField(max_length=255, null=True)
     predicted_wealth_idx = models.DecimalField(max_digits=15, decimal_places=10)
     wealth_decile = models.IntegerField(null=True)
+    admin_level = models.IntegerField(null=True)
     geom = models.MultiPolygonField(null=True) # add MultiPolygon
 
 class DHS_cluster(models.Model):

@@ -34,7 +34,9 @@ class DHS_ClusterLayer(GeoJSONLayerView):
 class RegionLayer(GeoJSONLayerView):
     def get_queryset(self):
         country = self.request.GET.get('country')
-        context = Region.objects.all().filter(country=country)
+        admin_level = self.request.GET.get('admin_level')
+        context = Region.objects.all().filter(country=country, admin_level=admin_level)
+        print(len(context))
         return context
 
 # return template for base map

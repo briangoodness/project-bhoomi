@@ -3,14 +3,29 @@
 
 cd $FINALPROJECT/maps/scripts
 
-python load-map-regions.py --file=$FINALPROJECT/maps/data/MWI_adm_shp/MWI_adm1.shp --country='malawi'
+# malawi
+python load-map-regions.py --file=$FINALPROJECT/maps/data/MWI_adm_shp/MWI_adm0.shp --country='malawi' --admin_level=0
+python load-map-regions.py --file=$FINALPROJECT/maps/data/MWI_adm_shp/MWI_adm1.shp --country='malawi' --admin_level=1
+python load-map-regions.py --file=$FINALPROJECT/maps/data/MWI_adm_shp/MWI_adm2.shp --country='malawi' --admin_level=2
+python load-map-regions.py --file=$FINALPROJECT/maps/data/MWI_adm_shp/MWI_adm3.shp --country='malawi' --admin_level=3
 
-python load-map-regions.py --file=$FINALPROJECT/maps/data/RWA_adm_shp/RWA_adm1.shp --country='rwanda'
+# rwanda
+python load-map-regions.py --file=$FINALPROJECT/maps/data/RWA_adm_shp/RWA_adm0.shp --country='rwanda' --admin_level=0
+python load-map-regions.py --file=$FINALPROJECT/maps/data/RWA_adm_shp/RWA_adm1.shp --country='rwanda' --admin_level=1
+python load-map-regions.py --file=$FINALPROJECT/maps/data/RWA_adm_shp/RWA_adm2.shp --country='rwanda' --admin_level=2
+python load-map-regions.py --file=$FINALPROJECT/maps/data/RWA_adm_shp/RWA_adm3.shp --country='rwanda' --admin_level=3
 
-python load-map-regions.py --file=$FINALPROJECT/maps/data/GHA_adm_shp/GHA_adm1.shp --country='ghana'
+# ghana
+python load-map-regions.py --file=$FINALPROJECT/maps/data/GHA_adm_shp/GHA_adm0.shp --country='ghana' --admin_level=0
+python load-map-regions.py --file=$FINALPROJECT/maps/data/GHA_adm_shp/GHA_adm1.shp --country='ghana' --admin_level=1
+python load-map-regions.py --file=$FINALPROJECT/maps/data/GHA_adm_shp/GHA_adm2.shp --country='ghana' --admin_level=2
+python load-map-regions.py --file=$FINALPROJECT/maps/data/GHA_adm_shp/GHA_adm3.shp --country='ghana' --admin_level=3
 
-python load-map-regions.py --file=$FINALPROJECT/maps/data/TZA_adm_shp/TZA_adm1.shp --country='tanzania'
+# tanzania
+python load-map-regions.py --file=$FINALPROJECT/maps/data/TZA_adm_shp/TZA_adm0.shp --country='tanzania' --admin_level=0
+python load-map-regions.py --file=$FINALPROJECT/maps/data/TZA_adm_shp/TZA_adm1.shp --country='tanzania' --admin_level=1
+python load-map-regions.py --file=$FINALPROJECT/maps/data/TZA_adm_shp/TZA_adm2.shp --country='tanzania' --admin_level=2
+python load-map-regions.py --file=$FINALPROJECT/maps/data/TZA_adm_shp/TZA_adm3.shp --country='tanzania' --admin_level=3
 
-# After loading all rows; run SQL statement to convert the 'geom' column back to Geometry datatype, from text/hex format
-# ALTER TABLE maps_region ALTER COLUMN geom TYPE Geometry(MultiPOLYGON);
-# SELECT UpdateGeometrySRID('maps_region', 'geom', 4326);
+# run
+psql $DATABASE_URL --file=cleanup-map-regions.sql

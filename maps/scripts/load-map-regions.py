@@ -20,7 +20,7 @@ def help():
 # run main
 def main(argv):
     try:
-        opts, args = getopt.getopt(argv, "h", ["file=", "country="])
+        opts, args = getopt.getopt(argv, "h", ["file=", "country=", "admin_level="])
     except getopt.GetoptError:
         sys.exit(2)
 
@@ -33,10 +33,16 @@ def main(argv):
             filename = arg
         elif opt == '--country':
             country = arg
+        elif opt == '--admin_level':
+            admin_level = int(arg)
 
     # print country
     if '--country' in optlist:
         print('\nCountry: %s\n' % country)
+
+    # print administrative level
+    if '--admin_level' in optlist:
+        print('\Administrative Level: %s\n' % admin_level)
 
     # load CSV file into GeoDataFrame
     gdf = gpd.read_file(filename, crs=4326)
@@ -56,21 +62,27 @@ def main(argv):
     gdf['geom'] = gdf['geom'].apply(wkt)
 
     # rename fields
+    # if country-wide shape (admin_level==0), then use different field
     cols_to_rename = {
-        'ID_1':'id',
-        'NAME_1':'name'
+        'NAME_%s' % admin_level:'name'
         }
+    if admin_level==0:
+        cols_to_rename = {
+            'NAME_ENGLI':'name'
+            }
     gdf = gdf.rename(columns=cols_to_rename)
 
     # add country column
     gdf['country'] = country
+    gdf['admin_level'] = admin_level
     gdf['predicted_wealth_idx'] = 1.2
     gdf['wealth_decile'] = 65
 
     # select columns to load
-    cols = [#'id',
+    cols = [
             'name',
             'country',
+            'admin_level',
             'predicted_wealth_idx',
             'wealth_decile',
             'geom',]

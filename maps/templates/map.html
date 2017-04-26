@@ -168,7 +168,7 @@
         "type": "circle",
         "source": {
             "type": "geojson",
-            "data":'{% url "dhs-clusters-data" %}'
+            "data": 'dhs-data.geojson?country={{ country }}'
           },
         "layout": {
                     'visibility': 'visible'
@@ -202,7 +202,7 @@
       container: 'map',
       //style: 'mapbox://styles/mapbox/satellite-v9?optimize=true',
       // style: 'mapbox://styles/mapbox/outdoors-v9?optimize=true',
-      style: 'mapbox://styles/briangoodness/cj1wia7ax00162smrphmw1pp9',
+      style: '{{ mapbox_style }}',
       //center: [29.8739, -1.9403], // starting position
       center: [{{ center_lng }}, {{ center_lat }}],
       zoom: {{ zoom_level }}, // starting zoom

@@ -25,7 +25,7 @@
           position: absolute;
           z-index: 1;
           top: 70px;
-          left: 10px;
+          right: 10px;
           border-radius: 3px;
           width: 120px;
           border: 1px solid rgba(0,0,0,0.4);
@@ -73,19 +73,6 @@
         font-family: Arial, sans-serif;
         overflow: auto;
         border-radius: 3px;
-      }
-
-      #features {
-        top: 50px;
-        height: 100px;
-        margin-top: 20px;
-        width: 200px;
-      }
-
-      #features p {
-        font-family: Arial, sans-serif;
-        padding-top: 5px;
-        padding-left: 10px;
       }
 
       #legend {
@@ -148,26 +135,7 @@
     </div><!-- /.container-fluid -->
   </nav>
 
-  <div id='map' style='width: 100%; height: 500px;'></div>
-  <div class='map-overlay' id='features'><div id='pd'></div></div>
-  <div class='map-overlay' id='legend'></div>
-
-  <div id='style-menu'>
-    <input id='basic' type='radio' name='rtoggle' value='basic' checked='checked'>
-    <label for='basic'>basic</label>
-    <input id='streets' type='radio' name='rtoggle' value='streets'>
-    <label for='streets'>streets</label>
-    <input id='bright' type='radio' name='rtoggle' value='bright'>
-    <label for='bright'>bright</label>
-    <input id='light' type='radio' name='rtoggle' value='light'>
-    <label for='light'>light</label>
-    <input id='dark' type='radio' name='rtoggle' value='dark'>
-    <label for='dark'>dark</label>
-    <input id='outdoors' type='radio' name='rtoggle' value='outdoors'>
-    <label for='outdoors'>outdoors</label>
-    <input id='satellite' type='radio' name='rtoggle' value='satellite'>
-    <label for='satellite'>satellite</label>
-  </div>
+  <h2>About Project Bhoomi</h2>
 
   <nav id="menu"></nav>
 
@@ -246,19 +214,6 @@
         item.appendChild(value);
         legend.appendChild(item);
       });
-    });
-
-    map.on('mousemove', function(e) {
-      var layers = ['low-wealth', 'medium-wealth', 'high-wealth'];
-      var states = map.queryRenderedFeatures(e.point, {
-        layers: layers
-      });
-
-      if (states.length > 0) {
-        document.getElementById('pd').innerHTML = '<p><strong>Region: </strong>' + states[0].properties.name + '</p><p><strong>Wealth index: </strong>' + states[0].properties.predicted_wealth_idx + '</p><p><strong>Decile: </strong>' + states[0].properties.wealth_decile + '</p>';
-      } else {
-        document.getElementById('pd').innerHTML = '';
-      }
     });
 
     // retrieve map style

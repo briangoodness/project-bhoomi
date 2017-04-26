@@ -39,6 +39,10 @@ class RegionLayer(GeoJSONLayerView):
         print(len(context))
         return context
 
+# return about page
+def about(request):
+    return render(request, 'about.html')
+
 # return template for base map
 def map(request, country='rwanda'):
     return render(request, 'map.html', {'token': os.environ['MAPBOX_TOKEN'],  # don't hardcode Mapbox API tokens

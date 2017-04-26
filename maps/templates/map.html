@@ -15,7 +15,7 @@
   {% leaflet_js %}
   {% leaflet_css %}
 
-  <title>Sample Map</title>
+  <title>Project Bhoomi</title>
 </head>
 <body>
 
@@ -64,6 +64,36 @@
   </style>
 
   <style>
+      .map-overlay {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.8);
+        margin-right: 20px;
+        font-family: Arial, sans-serif;
+        overflow: auto;
+        border-radius: 3px;
+      }
+
+      #legend {
+        padding: 10px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        line-height: 18px;
+        height: 80px;
+        margin-bottom: 180px;
+        width: 150px;
+      }
+
+      .legend-key {
+        display: inline-block;
+        border-radius: 20%;
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+      }
+  </style>
+
+  <style>
       .no-margin-bottom {
           margin-bottom: 0px !important;
       }
@@ -80,7 +110,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Bhoomi</a>
+        <a class="navbar-brand" href="#">Project Bhoomi</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -106,6 +136,7 @@
   </nav>
 
   <div id='map' style='width: 100%; height: 500px;'></div>
+  <div class='map-overlay' id='legend'></div>
 
   <div id='style-menu'>
     <input id='basic' type='radio' name='rtoggle' value='basic' checked='checked'>
@@ -182,6 +213,25 @@
     map.on('load', function () {
       map.addLayer(clusterCenters);
       //map.addLayer(regionPredictions);
+
+      //choropleth layers
+      var layers = ['low-wealth', 'medium-wealth', 'high-wealth'];
+      var legend = document.getElementById('legend');
+
+      // adding the legends corresponding to the wealth indexes choropleth.
+      layers.forEach(function(layer) {
+        var color = map.getPaintProperty(layer, 'fill-color');
+        var item = document.createElement('div');
+        var key = document.createElement('span');
+        key.className = 'legend-key';
+        key.style.backgroundColor = color;
+
+        var value = document.createElement('span');
+        value.innerHTML = layer;
+        item.appendChild(key);
+        item.appendChild(value);
+        legend.appendChild(item);
+      });
     });
 
     // retrieve map style
@@ -268,7 +318,7 @@
       search_button.onclick = function (e) {
           var search_term = document.getElementById('search-term').value.toLowerCase();
 
-          //validate input
+          //TODO: validate input and send error/404 message if country not found.
 
           var search_form = document.getElementById('search-form');
           search_form.action = search_term;

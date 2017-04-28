@@ -93,7 +93,7 @@
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         line-height: 18px;
         height: 80px;
-        margin-bottom: 180px;
+        top: 420px;
         width: 150px;
       }
 
@@ -109,6 +109,10 @@
   <style>
       .no-margin-bottom {
           margin-bottom: 0px !important;
+      }
+
+      .display-none {
+          display: none;
       }
   </style>
 
@@ -149,7 +153,7 @@
   </nav>
 
   <div id='map' style='width: 100%; height: 500px;'></div>
-  <div class='map-overlay' id='features'><div id='pd'></div></div>
+  <div class='map-overlay display-none' id='features'><div id='pd'></div></div>
   <div class='map-overlay' id='legend'></div>
 
   <div id='style-menu'>
@@ -256,8 +260,10 @@
 
       if (states.length > 0) {
         document.getElementById('pd').innerHTML = '<p><strong>Region: </strong>' + states[0].properties.name + '</p><p><strong>Wealth index: </strong>' + states[0].properties.predicted_wealth_idx + '</p><p><strong>Decile: </strong>' + states[0].properties.wealth_decile + '</p>';
+        document.getElementById('features').classList.remove("display-none");
       } else {
         document.getElementById('pd').innerHTML = '';
+        document.getElementById('features').classList.add("display-none");
       }
     });
 

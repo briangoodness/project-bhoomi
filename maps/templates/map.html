@@ -1,5 +1,12 @@
 {% extends "main_content.html" %}
 
+{% block head %}
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.css' rel='stylesheet' />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js'></script>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/css/bootstrap-slider.min.css' rel='stylesheet' />
+{% endblock %}
+
 {% block content %}
 
 <style>
@@ -111,9 +118,29 @@
   }
 </style>
 
+<style>
+  #slider-content {
+    position: absolute;
+    top: 260px;
+    left: 40px;
+  }
+
+  #slider-admin-level {
+    position: absolute;
+    top: 260px;
+  }
+
+  .slider-handle.custom {
+      position: absolute;
+      top: 260px;
+  }
+</style>
+
   <div id='map'></div>
   <div class='map-overlay display-none' id='features'><div id='pd'></div></div>
   <div class='map-overlay' id='legend'></div>
+
+  <div id='slider-content'><input id="slider-admin-level" type="text" /></div>
 
   <div id='style-menu'>
     <input id='basic' type='radio' name='rtoggle' value='basic' checked='checked'>
@@ -275,6 +302,17 @@
       var layers = document.getElementById('menu');
       layers.appendChild(link);
     }
+
+    //slider for administrative region details:
+    var admin_level = new Slider("#slider-admin-level", {
+        ticks: [1, 2, 3],
+        value: 1,
+        orientation: 'vertical',
+        tooltip_position:'right',
+        formatter: function(value) {
+            return 'Admin Level ' + value;
+        }
+    });
 
 
   </script>

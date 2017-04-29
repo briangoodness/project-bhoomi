@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+{% load leaflet_tags %}
+{% load bootstrap3 %}
+
+<html>
+<head>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.css' rel='stylesheet' />
+
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  {% leaflet_js %}
+  {% leaflet_css %}
+
+  <title>Project Bhoomi</title>
+</head>
+<body>
+  <style>
+      .no-margin-bottom {
+          margin-bottom: 0px !important;
+      }
+
+      .display-none {
+          display: none;
+      }
+  </style>
+
+  <!-- navbar -->
+  <nav class="navbar navbar-default navbar-static-top navbar-inverse no-margin-bottom">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Project Bhoomi</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <span class="caret"></span></a>
+            <ul id="country-list" class="dropdown-menu">
+            </ul>
+          </li>
+          <li><a href="#">Data</a></li>
+          <li><a href="about">About</a></li>
+        </ul>
+        <form id="search-form" class="navbar-form navbar-right">
+          <div class="form-group">
+            <input id="search-term" type="text" class="form-control" placeholder="Search" list="search-term-list">
+            <datalist id="search-term-list"></datalist>
+          </div>
+          <button id="search-button" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  {% block content %}
+  {% endblock %}
+
+  <script>
+   // load country options
+    var toggleableCountryIds = [ 'Ghana', 'Malawi', 'Rwanda', 'Tanzania' ];
+    for (var i = 0; i < toggleableCountryIds.length; i++) {
+      //load explore tab
+      var id = toggleableCountryIds[i];
+
+      var list_element = document.createElement('li');
+
+      var link = document.createElement('a');
+      link.href = id.toLowerCase();
+      link.className = 'active';
+      link.textContent = id;
+
+      link.onclick = function (e) {
+      };
+
+      list_element.appendChild(link);
+
+      var country_list = document.getElementById('country-list');
+      country_list.appendChild(list_element);
+
+      //load search term list
+      var search_term_list = document.getElementById('search-term-list');
+
+      var option = document.createElement('option');
+      option.value = id;
+
+      search_term_list.append(option);
+    }
+
+    //search
+    var search_button = document.getElementById('search-button');
+    search_button.onclick = function (e) {
+        var search_term = document.getElementById('search-term').value.toLowerCase();
+
+        //TODO: validate input and send error/404 message if country not found.
+
+        var search_form = document.getElementById('search-form');
+        search_form.action = search_term;
+        search_form.submit();
+    };
+  </script>
+</body>
+</html>

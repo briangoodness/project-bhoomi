@@ -1,156 +1,93 @@
-<!DOCTYPE html>
+{% extends "main_content.html" %}
 
-{% load staticfiles %}
-{% load leaflet_tags %}
-{% load bootstrap3 %}
+{% block content %}
 
-<html>
-<head>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-  <script src='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.js'></script>
-  <link href='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.css' rel='stylesheet' />
+<style>
+  #menu {
+      background: #fff;
+      position: absolute;
+      z-index: 1;
+      top: 70px;
+      left: 10px;
+      border-radius: 3px;
+      width: 120px;
+      border: 1px solid rgba(0,0,0,0.4);
+      font-family: 'Open Sans', sans-serif;
+  }
 
-  {% bootstrap_css %}
-  {% bootstrap_javascript %}
-  {% leaflet_js %}
-  {% leaflet_css %}
+  #menu a {
+      font-size: 13px;
+      color: #404040;
+      display: block;
+      margin: 0;
+      padding: 0;
+      padding: 10px;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,0.25);
+      text-align: center;
+  }
 
-  <title>Project Bhoomi</title>
-</head>
-<body>
+  #menu a:last-child {
+      border: none;
+  }
 
-  <style>
-      #menu {
-          background: #fff;
-          position: absolute;
-          z-index: 1;
-          top: 70px;
-          left: 10px;
-          border-radius: 3px;
-          width: 120px;
-          border: 1px solid rgba(0,0,0,0.4);
-          font-family: 'Open Sans', sans-serif;
-      }
+  #menu a:hover {
+      background-color: #f8f8f8;
+      color: #404040;
+  }
 
-      #menu a {
-          font-size: 13px;
-          color: #404040;
-          display: block;
-          margin: 0;
-          padding: 0;
-          padding: 10px;
-          text-decoration: none;
-          border-bottom: 1px solid rgba(0,0,0,0.25);
-          text-align: center;
-      }
+  #menu a.active {
+      background-color: #3887be;
+      color: #ffffff;
+  }
 
-      #menu a:last-child {
-          border: none;
-      }
+  #menu a.active:hover {
+      background: #3074a4;
+  }
+</style>
 
-      #menu a:hover {
-          background-color: #f8f8f8;
-          color: #404040;
-      }
+<style>
+  .map-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.8);
+    margin-right: 20px;
+    font-family: Arial, sans-serif;
+    overflow: auto;
+    border-radius: 3px;
+  }
 
-      #menu a.active {
-          background-color: #3887be;
-          color: #ffffff;
-      }
+  #features {
+    top: 50px;
+    height: 100px;
+    margin-top: 20px;
+    width: 200px;
+  }
 
-      #menu a.active:hover {
-          background: #3074a4;
-      }
-  </style>
+  #features p {
+    font-family: Arial, sans-serif;
+    padding-top: 5px;
+    padding-left: 10px;
+  }
 
-  <style>
-      .map-overlay {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        background: rgba(255, 255, 255, 0.8);
-        margin-right: 20px;
-        font-family: Arial, sans-serif;
-        overflow: auto;
-        border-radius: 3px;
-      }
+  #legend {
+    padding: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    line-height: 18px;
+    height: 80px;
+    top: 420px;
+    width: 150px;
+  }
 
-      #features {
-        top: 50px;
-        height: 100px;
-        margin-top: 20px;
-        width: 200px;
-      }
-
-      #features p {
-        font-family: Arial, sans-serif;
-        padding-top: 5px;
-        padding-left: 10px;
-      }
-
-      #legend {
-        padding: 10px;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        line-height: 18px;
-        height: 80px;
-        top: 420px;
-        width: 150px;
-      }
-
-      .legend-key {
-        display: inline-block;
-        border-radius: 20%;
-        width: 10px;
-        height: 10px;
-        margin-right: 5px;
-      }
-  </style>
-
-  <style>
-      .no-margin-bottom {
-          margin-bottom: 0px !important;
-      }
-
-      .display-none {
-          display: none;
-      }
-  </style>
-
-  <!-- navbar -->
-  <nav class="navbar navbar-default navbar-static-top navbar-inverse no-margin-bottom">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Project Bhoomi</a>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <span class="caret"></span></a>
-            <ul id="country-list" class="dropdown-menu">
-            </ul>
-          </li>
-          <li><a href="#">Data</a></li>
-          <li><a href="about">About</a></li>
-        </ul>
-        <form id="search-form" class="navbar-form navbar-right">
-          <div class="form-group">
-            <input id="search-term" type="text" class="form-control" placeholder="Search" list="search-term-list">
-            <datalist id="search-term-list"></datalist>
-          </div>
-          <button id="search-button" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-        </form>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
+  .legend-key {
+    display: inline-block;
+    border-radius: 20%;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+  }
+</style>
 
   <div id='map' style='width: 100%; height: 500px;'></div>
   <div class='map-overlay display-none' id='features'><div id='pd'></div></div>
@@ -284,36 +221,6 @@
       inputs[i].onclick = switchLayer;
     }
 
-    // load country options
-    var toggleableCountryIds = [ 'Ghana', 'Malawi', 'Rwanda', 'Tanzania' ];
-    for (var i = 0; i < toggleableCountryIds.length; i++) {
-      //load explore tab
-      var id = toggleableCountryIds[i];
-
-      var list_element = document.createElement('li');
-
-      var link = document.createElement('a');
-      link.href = id.toLowerCase();
-      link.className = 'active';
-      link.textContent = id;
-
-      link.onclick = function (e) {
-      };
-
-      list_element.appendChild(link);
-
-      var country_list = document.getElementById('country-list');
-      country_list.appendChild(list_element);
-
-      //load search term list
-      var search_term_list = document.getElementById('search-term-list');
-
-      var option = document.createElement('option');
-      option.value = id;
-
-      search_term_list.append(option);
-    }
-
     // toggle layers
     var dataLayers = {'dhs-clusters':'DHS Clusters'}
     var toggleableLayerIds = [];
@@ -345,21 +252,9 @@
 
       var layers = document.getElementById('menu');
       layers.appendChild(link);
-
-      //search
-      var search_button = document.getElementById('search-button');
-      search_button.onclick = function (e) {
-          var search_term = document.getElementById('search-term').value.toLowerCase();
-
-          //TODO: validate input and send error/404 message if country not found.
-
-          var search_form = document.getElementById('search-form');
-          search_form.action = search_term;
-          search_form.submit();
-      };
     }
 
 
   </script>
-</body>
-</html>
+
+{% endblock %}

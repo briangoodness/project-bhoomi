@@ -276,15 +276,15 @@
     for(var key in dataLayers) { toggleableLayerIds.push(key); }
 
     for (var i = 0; i < toggleableLayerIds.length; i++) {
-      var id = toggleableLayerIds[i];
+      var layer_id = toggleableLayerIds[i];
 
       var link = document.createElement('a');
       link.href = '#';
       link.className = 'active';
-      link.textContent = dataLayers[id];
+      link.textContent = dataLayers[layer_id];
 
       link.onclick = function (e) {
-          var clickedLayer = id;
+          var clickedLayer = layer_id;
           e.preventDefault();
           e.stopPropagation();
 

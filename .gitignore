@@ -1,4 +1,5 @@
 venv/
+newenv/
 **/**/*.pyc
 *sqlite3*
 bhoomi/staticfiles/*

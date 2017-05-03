@@ -136,6 +136,50 @@
   }
 </style>
 
+<style>
+  #download {
+      background: #fff;
+      position: absolute;
+      z-index: 1;
+      top: 120px;
+      left: 10px;
+      border-radius: 3px;
+      width: 120px;
+      border: 1px solid rgba(0,0,0,0.4);
+      font-family: 'Open Sans', sans-serif;
+  }
+
+  #download a {
+      font-size: 13px;
+      color: #404040;
+      display: block;
+      margin: 0;
+      padding: 0;
+      padding: 10px;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,0.25);
+      text-align: center;
+  }
+
+  #download a:last-child {
+      border: none;
+  }
+
+  #download a:hover {
+      background-color: #f8f8f8;
+      color: #404040;
+  }
+
+  #download a.active {
+      background-color: #BF3F3F;
+      color: #ffffff;
+  }
+
+  #download a.active:hover {
+      background: #722626;
+  }
+</style>
+
   <div id='map'></div>
   <div class='map-overlay display-none' id='features'><div id='pd'></div></div>
   <div class='map-overlay' id='legend'></div>
@@ -160,6 +204,8 @@
   </div>
 
   <nav id="menu"></nav>
+
+  <nav id="download"></nav>
 
   <script>
 
@@ -302,6 +348,15 @@
       var layers = document.getElementById('menu');
       layers.appendChild(link);
     }
+
+    //download button.
+    var dowload_link = document.createElement('a');
+    dowload_link.href = 'download/{{country}}/1';
+    dowload_link.className = 'active';
+    dowload_link.textContent = "Download";
+
+    var download_nav = document.getElementById('download');
+    download_nav.appendChild(dowload_link);
 
     //slider for administrative region details:
     var admin_level = new Slider("#slider-admin-level", {

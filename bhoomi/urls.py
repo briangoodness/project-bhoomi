@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'^dhs-data$', GeoJSONLayerView.as_view(model=DHS_cluster, properties=('country','data_year','dhs_wealth_idx','latitude','longitude')), name='dhs-clusters-data'),
     url(r'^regions-data.geojson?.*$', maps_views.RegionLayer.as_view(model=Region, properties=('country','name','predicted_wealth_idx','wealth_decile','admin_level')), name='regions-predictions-data-country'),
     url(r'^regions-data/$', GeoJSONLayerView.as_view(model=Region, properties=('country','name','predicted_wealth_idx','wealth_decile','admin_level')), name='regions-predictions-data'),
+    url(r'^download/(?P<country>[a-z]+)/(?P<admin_level>[1-9]+)$', maps_views.download, name='download'),
 ]

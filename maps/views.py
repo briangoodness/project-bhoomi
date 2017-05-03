@@ -4,6 +4,9 @@ import os
 from djgeojson.views import GeoJSONLayerView
 from .models import Region, DHS_cluster
 
+import csv
+from django.http import HttpResponse
+
 # store country centers
 max_zoom = 16
 country_centers = {
@@ -54,3 +57,16 @@ def map(request, country='rwanda'):
         'max_zoom':max_zoom,
         'mapbox_style':country_styles[country]
         })
+
+def download(request, country='rwanda', admin_level=1):
+    context = Region.objects.values_list('country', 'name', 'predicted_wealth_idx', 'wealth_decile', 'admin_level').filter(country=country, admin_level=admin_level)
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="data.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Country', 'Name', 'Predicted wealth index', 'Wealth decile', 'Admin level'])
+    for row in context:
+        writer.writerow([row[0].title(), row[1], row[2], row[3], row[4]])
+
+    return response

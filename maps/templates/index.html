@@ -1,8 +1,76 @@
-<html>
-  <head>
-    <title>Main Web Page</title>
-  </head>
-  <body>
-    It starts right now!
-  </body>
-</html>
+{% extends "main_content.html" %}
+
+{% block content %}
+<style>
+  header {
+    background-image: url('/static/imgs/background.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    text-align: center;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+  }
+  header .intro-text {
+    padding-top: 100px;
+    padding-bottom: 50px;
+  }
+  header .intro-text .intro-lead-in {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 22px;
+    line-height: 22px;
+    margin-bottom: 25px;
+    letter-spacing: 1.6rem;
+    text-transform: uppercase;
+  }
+  header .intro-text .intro-heading {
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 50px;
+    margin-bottom: 25px;
+  }
+  @media (min-width: 768px) {
+    header .intro-text {
+      padding-top: 200px;
+      padding-bottom: 200px;
+    }
+    header .intro-text .intro-lead-in {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 70px;
+      line-height: 60px;
+      letter-spacing: 1.6rem;
+      margin-bottom: 25px;
+    }
+    header .intro-text .intro-heading {
+      font-family: 'Open Sans', sans-serif;
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 70px;
+      line-height: 60px;
+      margin-bottom: 50px;
+    }
+  }
+  .intro-text a {
+    background: None;
+    color: #ffffff;
+    border-radius: 0 !important;
+  }
+</style>
+
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="intro-text">
+            <div class="intro-lead-in">Project Bhoomi</div>
+            <div class="intro-heading">* * *</div>
+            <a href="rwanda" class="btn btn-default btn-transparent btn-lg">Get started</a>
+        </div>
+    </div>
+</header>
+{% endblock %}

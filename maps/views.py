@@ -70,3 +70,7 @@ def download(request, country='rwanda', admin_level=1):
         writer.writerow([row[0].title(), row[1], row[2], row[3], row[4]])
 
     return response
+
+# return index page
+def index(request):
+    return render(request, 'index.html')

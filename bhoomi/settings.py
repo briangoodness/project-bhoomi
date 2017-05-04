@@ -29,11 +29,11 @@ if os.environ['DJANGO_ENV']=='PRODUCTION':
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost",".herokuapp.com", "www.project-bhoomi.co"]
 
-# set GEOS library path
-if DEBUG == False:
-    GEOS_LIBRARY_PATH = "{}/libgeos_c.so".format(os.environ.get('GEOS_LIBRARY_PATH'))
-    GDAL_LIBRARY_PATH = "{}/libgdal.so".format(os.environ.get('GDAL_LIBRARY_PATH'))
-    PROJ4_LIBRARY_PATH = "{}/libproj.so".format(os.environ.get('PROJ4_LIBRARY_PATH'))
+# # set GEOS library path
+# if DEBUG == False:
+#     GEOS_LIBRARY_PATH = "{}/libgeos_c.so".format(os.environ.get('GEOS_LIBRARY_PATH'))
+#     GDAL_LIBRARY_PATH = "{}/libgdal.so".format(os.environ.get('GDAL_LIBRARY_PATH'))
+#     PROJ4_LIBRARY_PATH = "{}/libproj.so".format(os.environ.get('PROJ4_LIBRARY_PATH'))
 
 # Application definition
 

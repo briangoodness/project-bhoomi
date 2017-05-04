@@ -23,12 +23,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = os.environ['DEBUG_SETTING']
+if os.environ['DJANGO_ENV']=='PRODUCTION':
+    DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost",".herokuapp.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost",".herokuapp.com", "project-bhoomi.co"]
 
 # set GEOS library path
+DEBUG = True
 if DEBUG == False:
     GEOS_LIBRARY_PATH = "{}/libgeos_c.so".format(os.environ.get('GEOS_LIBRARY_PATH'))
     GDAL_LIBRARY_PATH = "{}/libgdal.so".format(os.environ.get('GDAL_LIBRARY_PATH'))

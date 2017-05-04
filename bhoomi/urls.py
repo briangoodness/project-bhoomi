@@ -19,7 +19,7 @@ from django.contrib import admin
 from djgeojson.views import GeoJSONLayerView
 
 from maps import views as maps_views
-from maps.models import Region, DHS_cluster
+from maps.models import Cell_Prediction, DHS_cluster, Region
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'^dhs-data$', GeoJSONLayerView.as_view(model=DHS_cluster, properties=('country','data_year','dhs_wealth_idx','latitude','longitude')), name='dhs-clusters-data'),
     url(r'^regions-data.geojson?.*$', maps_views.RegionLayer.as_view(model=Region, properties=('country','name','predicted_wealth_idx','wealth_decile','admin_level')), name='regions-predictions-data-country'),
     url(r'^regions-data/$', GeoJSONLayerView.as_view(model=Region, properties=('country','name','predicted_wealth_idx','wealth_decile','admin_level')), name='regions-predictions-data'),
+    url(r'^cell-predictions.geojson?.*$', maps_views.Cell_PredictionLayer.as_view(model=Cell_Prediction, properties=('country','i','j','predicted_wealth_idx')), name='cell-predictions-data-country'),
 ]

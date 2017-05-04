@@ -2,7 +2,7 @@ from django.shortcuts import render
 import os
 
 from djgeojson.views import GeoJSONLayerView
-from .models import Region, DHS_cluster
+from .models import Cell_Prediction, DHS_cluster, Region
 
 import csv
 from django.http import HttpResponse
@@ -26,8 +26,14 @@ country_styles = {
 
 # Create your views here.
 
-# classes DHS_ClusterLayer, RegionLayer to filter ResultSet based on country name
+# classes Cell_PredictionLayer, DHS_ClusterLayer, RegionLayer to filter ResultSet based on country name
 # source: http://geolio.com/weblog/2013/dec/12/passing-argument-django-geojson/
+class Cell_PredictionLayer(GeoJSONLayerView):
+    def get_queryset(self):
+        country = self.request.GET.get('country')
+        context = Cell_Prediction.objects.all().filter(country=country)
+        return context
+
 class DHS_ClusterLayer(GeoJSONLayerView):
     def get_queryset(self):
         country = self.request.GET.get('country')
@@ -39,7 +45,6 @@ class RegionLayer(GeoJSONLayerView):
         country = self.request.GET.get('country')
         admin_level = self.request.GET.get('admin_level')
         context = Region.objects.all().filter(country=country, admin_level=admin_level)
-        print(len(context))
         return context
 
 # return about page

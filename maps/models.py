@@ -2,6 +2,14 @@
 from django.contrib.gis.db import models
 
 # Create your models here.
+class Cell_Prediction(models.Model):
+    #id = models.BigIntegerField(primary_key=True)
+    country = models.CharField(max_length=255, null=True)
+    i = models.IntegerField(null=True)
+    j = models.IntegerField(null=True)
+    predicted_wealth_idx = models.DecimalField(max_digits=15, decimal_places=10)
+    geom = models.PolygonField(null=True) # add Polygon (change to MultiPolygon)
+
 class Region(models.Model):
     #id = models.BigIntegerField(primary_key=True)
     country = models.CharField(max_length=255, null=True)

@@ -38,6 +38,8 @@ h1,h2,h3,h4,h5,h6 {
     padding:0;
     color:#444;
 }
+
+
 q:before,q:after {
     content:'';
 }
@@ -61,6 +63,7 @@ body{
 h1{
 	font-size: 6em;
 }
+
 p{
 	font-size: 2em;
 }
@@ -72,6 +75,8 @@ p{
 .section{
 	text-align:center;
 }
+
+
 #menu li {
 	display:inline-block;
 	margin: 10px;
@@ -241,4 +246,3 @@ p{
 	right:10px;
 	z-index: 999;
  }
-

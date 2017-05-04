@@ -62,7 +62,7 @@ def download(request, country='rwanda', admin_level=1):
     context = Region.objects.values_list('country', 'name', 'predicted_wealth_idx', 'wealth_decile', 'admin_level').filter(country=country, admin_level=admin_level)
 
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="data.csv"'
+    response['Content-Disposition'] = 'attachment; filename="data-'+country+'-admin_level-'+admin_level+'.csv"'
 
     writer = csv.writer(response)
     writer.writerow(['Country', 'Name', 'Predicted wealth index', 'Wealth decile', 'Admin level'])

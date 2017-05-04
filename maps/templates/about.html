@@ -1,181 +1,368 @@
 {% extends "main_content.html" %}
 
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href='/static/css/agency.css' rel='stylesheet' />
+{% endblock %}
+
 {% block content %}
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Project Bhoomi About Page</title>
-
-
-    <link rel="stylesheet" type="text/css" href="/static/css/jquery.fullPage.css" />
-    <link rel="stylesheet" type="text/css" href="/static/css/examples.css" />
-    <style>
-
-    /* Style for our header texts
-    * --------------------------------------- */
-    h1{
-        font-size: 5em;
-        font-family: arial,helvetica;
-        color: #fff;
-        margin:0;
+<style>
+  header {
+    background-image: url('/static/imgs/earth.jpg');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    text-align: center;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+  }
+  header .intro-text {
+    padding-top: 100px;
+    padding-bottom: 50px;
+  }
+  header .intro-text .intro-lead-in {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 22px;
+    line-height: 22px;
+    margin-bottom: 25px;
+    letter-spacing: 1.6rem;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+  header .intro-text .intro-heading {
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 50px;
+    margin-bottom: 25px;
+  }
+  @media (min-width: 768px) {
+    header .intro-text {
+      padding-top: 200px;
+      padding-bottom: 200px;
     }
-    .intro p{
-        color: #fff;
+    header .intro-text .intro-lead-in {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 70px;
+      line-height: 60px;
+      letter-spacing: 1.6rem;
+      margin-bottom: 25px;
     }
-
-    /* Centered texts in each section
-    * --------------------------------------- */
-    .section{
-        text-align:center;
+    header .intro-text .intro-heading {
+      font-family: 'Open Sans', sans-serif;
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 70px;
+      line-height: 60px;
+      margin-bottom: 50px;
     }
+  }
+  .intro-text a {
+    background: None;
+    color: #ffffff;
+    border-radius: 0 !important;
+  }
 
 
-    /* Bottom menu
-    * --------------------------------------- */
-    #infoMenu li a {
-        color: #fff;
+</style>
+
+<style>
+    section {
+      padding: 100px 0;
     }
-    </style>
+    section h2.section-heading {
+      font-size: 40px;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+    section h3.section-subheading {
+      font-size: 16px;
+      font-family: 'Open Sans', sans-serif;
+      text-transform: none;
+      font-style: italic;
+      font-weight: 400;
+      margin-bottom: 75px;
+    }
+    @media (min-width: 768px) {
+      section {
+        padding: 150px 0;
+      }
+    }
+    .service-heading {
+      margin: 15px 0;
+      text-transform: none;
+    }
+</style>
 
-    <!--[if IE]>
-        <script type="text/javascript">
-             var console = { log: function() {} };
-        </script>
-    <![endif]-->
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-
-    <script type="text/javascript" src="/static/js/scrolloverflow.js"></script>
-
-    <script type="text/javascript" src="/static/js/jquery.fullPage.js"></script>
-    <script type="text/javascript" src="/static/js/examples.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#fullpage').fullpage({
-                menu: '#menu',
-                anchors: ['about', 'data', 'methodology', 'application', 'team'],
-                sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C', '#add8e6', '#9370DB'],
-                autoScrolling: false
-            });
-        });
-    </script>
-
-</head>
-
-<ul id="menu">
-    <li data-menuanchor="about" class="active"><a href="#about">Background</a></li>
-    <li data-menuanchor="data"><a href="#data">The Data</a></li>
-    <li data-menuanchor="methodology"><a href="#methodology">Methodology</a></li>
-    <li data-menuanchor="application"><a href="#application">Applicaiton</a></li>
-    <li data-menuanchor="team"><a href="#team">The Team</a></li>
-</ul>
-
-
-<!-- <h2>About Project Bhoomi</h2> -->
-
-<div id="fullpage">
-    <div class="section" id="section0">
-        <div class="intro">
-            <!-- <img src="/static/imgs/earth.jpg"  alt="1"/> -->
-            <h1>Project Background</h1>
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="intro-text">
+            <div class="intro-lead-in">Project Background</div>
+            <!-- <div class="intro-heading">* * *</div>
+            <a href="rwanda" class="btn btn-default btn-transparent btn-lg">Get started</a> -->
+            <div>
+              Project Bhoomi is intended as a contribution to the world of International Development.
+              Traditional sources of information, such as census data, are often out of date
+              in the developing world and thus are not representative of current conditions.
+              This paucity of infomration has afforded an opportunity for researchers to
+              explore the possibility of supplementing traditional data sources with new forms
+              of digital data.
+            </div>
             <br></br>
             <div>
-               <p>
-                 Project Bhoomi is intended as a contribution to the world of International Development.
-                 Traditional sources of information, such as census data, are often out of date
-                 in the developing world and thus are not representative of current conditions.
-                 This paucity of infomration has afforded an opportunity for researchers to
-                 explore the possibility of supplementing traditional data sources with new forms
-                 of digital data.
-              </p>
-            </div>
-            <br></br>
-            <div>
-               <p>
-                 This project aims to build upon work done by a team of researchers led by Neal Jean,
-                 a PhD student at Stanford. Jean has demonstrated the power of applying machine learning
-                 algorithms on satellite imagery in order to determine economic conditions in Sub Saharan
-                 Africa. We have worked to reproduce Jean's work, and to create an interactive information
-                 portal that could be used by stakeholders and decision makers in the Internation Development
-                 and Internation Aid arenas.
-               </p>
+              This project aims to build upon work done by a team of researchers led by Neal Jean,
+              a PhD student at Stanford. Jean has demonstrated the power of applying machine learning
+              algorithms on satellite imagery in order to determine economic conditions in Sub Saharan
+              Africa. We have worked to reproduce Jean's work, and to create an interactive information
+              portal that could be used by stakeholders and decision makers in the Internation Development
+              and Internation Aid arenas.
             </div>
         </div>
     </div>
+</header>
 
-    <div class="section" id="section1">
-        <!-- <div class="slide" id="slide1"> -->
-            <div class="intro">
-                <h1>The Data</h1>
-                <br></br>
-              <div>
-                <p>
-                    The majority of data used in this project is  daylight satellite imagery. We currently
-                    have more than 4 million satellite images, comprising the entirety of the countries
-                    Rwanda, Ghana, Tanzania, and Malawi. We also use 'nightlights' data, which is satellite
-                    imagery of the planet at night.
-                </p>
-                <br></br>
-                <p>
-                  In addition, we are using Demograhpic and Health Survey (DHS) data. This data provides
-                  us with 'ground truth' information that allows us to evaluate the performance of our
-                  machine learning and regression models.
-              </div>
-
+<!-- Services Section -->
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">The Data</h2>
+                <!-- <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3> -->
             </div>
-        <!-- </div> -->
-
-        <!-- <div class="slide" id="slide2">
-            <h1>Horizontal sliders!</h1> -->
-            <!-- <img src="/static/imgs/earth.jpg" alt="iphone" id="iphone-two" /> -->
-        <!-- </div> -->
-
-    </div>
-    <div class="section" id="section2">
-        <div class="intro">
-            <h1>Methodology</h1>
-            <p>autoScrolling:false</p>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <!-- <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                </span> -->
+                <span>
+                  <img src="/static/imgs/day.jpg"></img>
+                </span>
+                <h4 class="service-heading">Daylight Satellite Imagery</h4>
+                <p class="text-muted">The majority of data used in this project is  daylight satellite imagery. We currently
+                have more than 4 million satellite images, comprising the entirety of the countries
+                Rwanda, Ghana, Tanzania, and Malawi.</p>
+            </div>
+            <div class="col-md-4">
+                <!-- <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                </span> -->
+                <span>
+                  <img src="/static/imgs/night.png"></img>
+                </span>
+                <h4 class="service-heading">Nighlight Satellite Imagery</h4>
+                <p class="text-muted"> We also use 'nightlights' data, which is satellite
+                imagery of the planet at night.</p>
+            </div>
+            <div class="col-md-4">
+                <!-- <span class="fa-stack fa-4x"> -->
+                    <!-- <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-lock fa-stack-1x fa-inverse"></i> -->
+                <span>
+                  <img src="/static/imgs/dhs.png"></img>
+                </span>
+                <h4 class="service-heading">Survey Data</h4>
+                <p class="text-muted">In addition, we are using Demograhpic and Health Survey (DHS) data. This data provides
+                us with 'ground truth' information that allows us to evaluate the performance of our
+                machine learning and regression models.</p>
+            </div>
         </div>
     </div>
+</section>
 
-    <div class="section" id="section4">
-        <div class="intro">
-            <h1>Application</h1>
-            <p>autoScrolling:false</p>
+<section id="method">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Methodology</h2>
+                <!-- <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3> -->
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-cogs fa-stack-1x fa-inverse"></i>
+                </span>
+                <!-- <span>
+                  <img src="/static/imgs/day.jpg"></img>
+                </span> -->
+                <h4 class="service-heading">Machine Learning</h4>
+                <p class="text-muted">The majority of data used in this project is  daylight satellite imagery. We currently
+                have more than 4 million satellite images, comprising the entirety of the countries
+                Rwanda, Ghana, Tanzania, and Malawi.</p>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+                </span>
+                <!-- <span>
+                  <img src="/static/imgs/night.png"></img>
+                </span> -->
+                <h4 class="service-heading">User Research</h4>
+                <p class="text-muted"> A thorough research process with included both secondary and primary research,
+                to be better understand the development space. The research process continued with contextual inquiries,
+                interviews, and usability testing of our demo as the project progressed.</p>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x"> -->
+                  <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                  <!-- <i class="fa fa-laptop fa-stack-1x fa-inverse"></i> -->
+                  <i class="fa fa-desktop fa-stack-1x fa-inverse"></i>
+                </span>
+                <!-- <span>
+                  <img src="/static/imgs/dhs.png"></img>
+                </span> -->
+                <h4 class="service-heading">Website Development</h4>
+                <p class="text-muted">Occurring concurrently with the user research, this interactive website
+                was developed. This iterative process took our concept from the initial wireframe to thead
+                working demo you see today.</p>
+            </div>
         </div>
     </div>
+</section>
 
-    <div class="section" id="section4">
-        <div class="intro">
-            <h1>The Team</h1>
-            <p>autoScrolling:false</p>
+<section id="application">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Application and Results</h2>
+                <!-- <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3> -->
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                </span>
+                <!-- <span>
+                  <img src="/static/imgs/day.jpg"></img>
+                </span> -->
+                <h4 class="service-heading">Machine Learning</h4>
+                <p class="text-muted">Accepting nighlight satellite imagery as a proxy for wealth, we take a
+                pre-trained convolutional neural net and use it to learn features of daylight satellite imagery that
+                are predictive of an area's wealth. Once the features are extracted, we are able to use them to run a regression
+                in order to predict the wealth different regions.</p>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                </span>
+                <!-- <span>
+                  <img src="/static/imgs/night.png"></img>
+                </span> -->
+                <h4 class="service-heading">User Research</h4>
+                <p class="text-muted"> A thorough research process with included both secondary and primary research,
+                to be better understand the development space. The research process continued with contextual inquiries,
+                interviews, and usability testing of our demo as the project progressed.</p>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x"> -->
+                  <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                  <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                </span>
+                <!-- <span>
+                  <img src="/static/imgs/dhs.png"></img>
+                </span> -->
+                <h4 class="service-heading">Website Development</h4>
+                <p class="text-muted">Occurring concurrently with the user research, this interactive website
+                was developed. This iterative process took our concept from the initial wireframe to thead
+                working demo you see today.</p>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
-<!-- <section id = "firstPage" class = "section">
-  <div class = "container">
-    Project Bhoomi is intended as a contribution to the world of International Development.
-    Traditional sources of information, such as census data, are often out of date
-     in the developing world and thus are not representative of current conditions.
-     This paucity of infomration has afforded an opportunity for researchers to
-     explore the possibility of supplementing traditional data sources with new forms
-     of digital data.
-  </div>
-</section> -->
 
-<!-- <section id = "secondPage" class = "section">
-  <div class = "container">
-    This project aims to build upon work done by a team of researchers led by Neal Jean,
-    a PhD student at Stanford. Jean has demonstrated the power of applying machine learning
-    algorithms on satellite imagery in order to determine economic conditions in Sub Saharan
-    Africa. We have worked to reproduce Jean's work, and to create an interactive information
-    portal that could be used by stakeholders and decision makers in the Internation Development
-    and Internation Aid arenas.
-  </div>
-</section> -->
+<section id="team">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">The Team</h2>
+                <!-- <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3> -->
+            </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-xs-2">
+              <span>
+                <img src="/static/imgs/team/cristian-garay.jpg"></img>
+              </span>
+              <a target="_blank" href="https://www.ischool.berkeley.edu/people/cristian-garay">
+              <h4 class="service-heading">Cristian Garay</h4>
+            </a>
+          </div>
+            <div class="col-xs-2">
+                <span>
+                  <img src="/static/imgs/team/brian-goodness.jpg"></img>
+                </span>
+                <a target="_blank" href="https://www.ischool.berkeley.edu/people/brian-goodness">
+                <h4 class="service-heading">Brian Goodness</h4>
+              </a>
+            </div>
+            <div class="col-xs-2">
+                <span>
+                  <img src="/static/imgs/team/deepa-kalpathi.gif"></img>
+                </span>
+                <a target="_blank" href="https://www.ischool.berkeley.edu/people/deepa-kalpathi">
+                <h4 class="service-heading">Deepa Kalpathi</h4>
+              </a>
+            </div>
+            <div class="col-xs-2">
+                <span>
+                  <img src="/static/imgs/team/eric-hagen.jpg"></img>
+                </span>
+                <a target="_blank" href="https://www.ischool.berkeley.edu/people/eric-hagen">
+                <h4 class="service-heading">Eric Hagen</h4>
+              </a>
+            </div>
+            <div class="col-xs-2">
+                <span>
+                  <img src="/static/imgs/team/surendran-subbiah.png"></img>
+                </span>
+                <a target="_blank" href="https://www.ischool.berkeley.edu/people/surendran-subbiah">
+                <h4 class="service-heading">Surendran Subbiah</h4>
+              </a>
+            </div>
+        </div>
+    </div>
+</section>
 
+<!-- <footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <span class="copyright">Copyright &copy; Your Website 2016</span>
+            </div>
+            <div class="col-md-4">
+                <ul class="list-inline social-buttons">
+                    <li><a href="#"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul class="list-inline quicklinks">
+                    <li><a href="#">Privacy Policy</a>
+                    </li>
+                    <li><a href="#">Terms of Use</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer> -->
 {% endblock %}

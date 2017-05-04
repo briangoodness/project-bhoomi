@@ -56,8 +56,8 @@
         $(document).ready(function() {
             $('#fullpage').fullpage({
                 menu: '#menu',
-                anchors: ['firstPage', 'secondPage', '3rdPage'],
-                sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
+                anchors: ['about', 'data', 'methodology', 'application', 'team'],
+                sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C', '#add8e6', '#9370DB'],
                 autoScrolling: false
             });
         });
@@ -66,41 +66,58 @@
 </head>
 
 <ul id="menu">
-    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First slide</a></li>
-    <li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
-    <li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
+    <li data-menuanchor="about" class="active"><a href="#about">Background</a></li>
+    <li data-menuanchor="data"><a href="#data">The Data</a></li>
+    <li data-menuanchor="methodology"><a href="#methodology">Methodology</a></li>
+    <li data-menuanchor="application"><a href="#application">Applicaiton</a></li>
+    <li data-menuanchor="team"><a href="#team">The Team</a></li>
 </ul>
 
 
-<h2>About Project Bhoomi</h2>
+<!-- <h2>About Project Bhoomi</h2> -->
 
 <div id="fullpage">
     <div class="section" id="section0">
         <div class="intro">
-            <img src="/static/imgs/earth.jpg"  alt="1"/>
-            <h1>Normal scrolling</h1>
+            <!-- <img src="/static/imgs/earth.jpg"  alt="1"/> -->
+            <h1>Project Background</h1>
             <p>With a linked menu</p>
         </div>
     </div>
+
     <div class="section" id="section1">
-        <div class="slide" id="slide1">
+        <!-- <div class="slide" id="slide1"> -->
             <div class="intro">
-                <h1>URL get updated (#)</h1>
+                <h1>The Data</h1>
                 <p>
                     Easy to bookmark and share
                 </p>
             </div>
-        </div>
+        <!-- </div> -->
 
-        <div class="slide" id="slide2">
-            <h1>Horizontal sliders!</h1>
-            <img src="/static/imgs/earth.jpg" alt="iphone" id="iphone-two" />
-        </div>
+        <!-- <div class="slide" id="slide2">
+            <h1>Horizontal sliders!</h1> -->
+            <!-- <img src="/static/imgs/earth.jpg" alt="iphone" id="iphone-two" /> -->
+        <!-- </div> -->
 
     </div>
     <div class="section" id="section2">
         <div class="intro">
-            <h1>Just use </h1>
+            <h1>Methodology</h1>
+            <p>autoScrolling:false</p>
+        </div>
+    </div>
+
+    <div class="section" id="section4">
+        <div class="intro">
+            <h1>Application</h1>
+            <p>autoScrolling:false</p>
+        </div>
+    </div>
+
+    <div class="section" id="section4">
+        <div class="intro">
+            <h1>The Team</h1>
             <p>autoScrolling:false</p>
         </div>
     </div>

@@ -3,7 +3,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href='/static/css/agency.css' rel='stylesheet' />
+<link href= {% static 'css/agency.css' %} rel='stylesheet' />
 {% endblock %}
 
 {% block content %}
@@ -144,7 +144,7 @@
                     <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
                 </span> -->
                 <span>
-                  <img src="/static/imgs/day.jpg" class="img-responsive"></img>
+                  <img src={% static 'imgs/day.jpg' %} class="img-responsive"></img>
                 </span>
                 <h4 class="service-heading">Daylight Satellite Imagery</h4>
                 <p class="text-muted">The majority of data used in this project is  daylight satellite imagery. We currently
@@ -157,7 +157,7 @@
                     <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
                 </span> -->
                 <span>
-                  <img src="/static/imgs/night.png" class="img-responsive"></img>
+                  <img src={% static 'imgs/night.png' %} class="img-responsive"></img>
                 </span>
                 <h4 class="service-heading">Nighlight Satellite Imagery</h4>
                 <p class="text-muted"> We also use 'nightlights' data, which is satellite
@@ -168,7 +168,7 @@
                     <!-- <i class="fa fa-circle fa-stack-2x text-primary"></i>
                     <i class="fa fa-lock fa-stack-1x fa-inverse"></i> -->
                 <span>
-                  <img src="/static/imgs/dhs.png" class="img-responsive"></img>
+                  <img src={% static 'imgs/dhs.png' %} class="img-responsive"></img>
                 </span>
                 <h4 class="service-heading">Survey Data</h4>
                 <p class="text-muted">In addition, we are using Demograhpic and Health Survey (DHS) data. This data provides
@@ -194,7 +194,7 @@
                     <i class="fa fa-cogs fa-stack-1x fa-inverse"></i>
                 </span>
                 <!-- <span>
-                  <img src="/static/imgs/day.jpg"></img>
+                  <img src={% static 'imgs/day.jpg' %}></img>
                 </span> -->
                 <h4 class="service-heading">Machine Learning</h4>
                 <p class="text-muted">The majority of data used in this project is  daylight satellite imagery. We currently
@@ -207,7 +207,7 @@
                     <i class="fa fa-users fa-stack-1x fa-inverse"></i>
                 </span>
                 <!-- <span>
-                  <img src="/static/imgs/night.png"></img>
+                  <img src={% static 'imgs/night.png' %}></img>
                 </span> -->
                 <h4 class="service-heading">User Research</h4>
                 <p class="text-muted"> A thorough research process with included both secondary and primary research,
@@ -221,7 +221,7 @@
                   <i class="fa fa-desktop fa-stack-1x fa-inverse"></i>
                 </span>
                 <!-- <span>
-                  <img src="/static/imgs/dhs.png"></img>
+                  <img src={% static 'imgs/dhs.png' %}></img>
                 </span> -->
                 <h4 class="service-heading">Website Development</h4>
                 <p class="text-muted">Occurring concurrently with the user research, this interactive website
@@ -247,7 +247,7 @@
                     <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
                 </span>
                 <!-- <span>
-                  <img src="/static/imgs/day.jpg"></img>
+                  <img src={% static 'imgs/day.jpg' %}></img>
                 </span> -->
                 <h4 class="service-heading">Machine Learning</h4>
                 <p class="text-muted">Accepting nighlight satellite imagery as a proxy for wealth, we take a
@@ -261,7 +261,7 @@
                     <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
                 </span>
                 <!-- <span>
-                  <img src="/static/imgs/night.png"></img>
+                  <img src={% static 'imgs/night.png' %}></img>
                 </span> -->
                 <h4 class="service-heading">User Research</h4>
                 <p class="text-muted"> A thorough research process with included both secondary and primary research,
@@ -274,7 +274,7 @@
                   <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
                 </span>
                 <!-- <span>
-                  <img src="/static/imgs/dhs.png"></img>
+                  <img src={% static 'imgs/dhs.png' %}></img>
                 </span> -->
                 <h4 class="service-heading">Website Development</h4>
                 <p class="text-muted">Occurring concurrently with the user research, this interactive website
@@ -297,7 +297,7 @@
         <div class="row text-center">
           <div class="col-sm-2">
               <span>
-                <img src="/static/imgs/team/cristian-garay.jpg" class="img-responsive"></img>
+                <img src={% static 'imgs/team/cristian-garay.jpg' %} class="img-responsive"></img>
               </span>
               <a target="_blank" href="https://www.ischool.berkeley.edu/people/cristian-garay">
               <h4 class="service-heading">Cristian Garay</h4>
@@ -305,7 +305,7 @@
           </div>
             <div class="col-sm-2">
                 <span>
-                  <img src="/static/imgs/team/brian-goodness.jpg" class="img-responsive"></img>
+                  <img src={% static 'imgs/team/brian-goodness.jpg' %} class="img-responsive"></img>
                 </span>
                 <a target="_blank" href="https://www.ischool.berkeley.edu/people/brian-goodness">
                 <h4 class="service-heading">Brian Goodness</h4>
@@ -313,7 +313,7 @@
             </div>
             <div class="col-sm-2">
                 <span>
-                  <img src="/static/imgs/team/deepa-kalpathi.gif" class="img-responsive"></img>
+                  <img src={% static 'imgs/team/deepa-kalpathi.gif' %} class="img-responsive"></img>
                 </span>
                 <a target="_blank" href="https://www.ischool.berkeley.edu/people/deepa-kalpathi">
                 <h4 class="service-heading">Deepa Kalpathi</h4>
@@ -321,7 +321,7 @@
             </div>
             <div class="col-sm-2">
                 <span>
-                  <img src="/static/imgs/team/eric-hagen.jpg" class="img-responsive"></img>
+                  <img src= {% static 'imgs/team/eric-hagen.jpg' %} class="img-responsive"></img>
                 </span>
                 <a target="_blank" href="https://www.ischool.berkeley.edu/people/eric-hagen">
                 <h4 class="service-heading">Eric Hagen</h4>
@@ -329,7 +329,7 @@
             </div>
             <div class="col-sm-2">
                 <span>
-                  <img src="/static/imgs/team/surendran-subbiah.png" class="img-responsive"></img>
+                  <img src= {% static 'imgs/team/surendran-subbiah.png' %} class="img-responsive"></img>
                 </span>
                 <a target="_blank" href="https://www.ischool.berkeley.edu/people/surendran-subbiah">
                 <h4 class="service-heading">Surendran Subbiah</h4>

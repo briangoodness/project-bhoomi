@@ -1,4 +1,5 @@
 {% extends "main_content.html" %}
+{% load static %}
 
 {% block head %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -8,7 +9,7 @@
 {% block content %}
 <style>
   header {
-    background-image: url('/static/imgs/earth.jpg');
+    background-image: url({% static "imgs/earth.jpg" %});
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center center;
@@ -128,7 +129,7 @@
 </header>
 
 <!-- Services Section -->
-<section id="services">
+<section id="services" class = "bg-primary">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -143,7 +144,7 @@
                     <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
                 </span> -->
                 <span>
-                  <img src="/static/imgs/day.jpg"></img>
+                  <img src="/static/imgs/day.jpg" class="img-responsive"></img>
                 </span>
                 <h4 class="service-heading">Daylight Satellite Imagery</h4>
                 <p class="text-muted">The majority of data used in this project is  daylight satellite imagery. We currently
@@ -156,7 +157,7 @@
                     <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
                 </span> -->
                 <span>
-                  <img src="/static/imgs/night.png"></img>
+                  <img src="/static/imgs/night.png" class="img-responsive"></img>
                 </span>
                 <h4 class="service-heading">Nighlight Satellite Imagery</h4>
                 <p class="text-muted"> We also use 'nightlights' data, which is satellite
@@ -167,7 +168,7 @@
                     <!-- <i class="fa fa-circle fa-stack-2x text-primary"></i>
                     <i class="fa fa-lock fa-stack-1x fa-inverse"></i> -->
                 <span>
-                  <img src="/static/imgs/dhs.png"></img>
+                  <img src="/static/imgs/dhs.png" class="img-responsive"></img>
                 </span>
                 <h4 class="service-heading">Survey Data</h4>
                 <p class="text-muted">In addition, we are using Demograhpic and Health Survey (DHS) data. This data provides
@@ -294,41 +295,41 @@
             </div>
         </div>
         <div class="row text-center">
-          <div class="col-xs-2">
+          <div class="col-sm-2">
               <span>
-                <img src="/static/imgs/team/cristian-garay.jpg"></img>
+                <img src="/static/imgs/team/cristian-garay.jpg" class="img-responsive"></img>
               </span>
               <a target="_blank" href="https://www.ischool.berkeley.edu/people/cristian-garay">
               <h4 class="service-heading">Cristian Garay</h4>
             </a>
           </div>
-            <div class="col-xs-2">
+            <div class="col-sm-2">
                 <span>
-                  <img src="/static/imgs/team/brian-goodness.jpg"></img>
+                  <img src="/static/imgs/team/brian-goodness.jpg" class="img-responsive"></img>
                 </span>
                 <a target="_blank" href="https://www.ischool.berkeley.edu/people/brian-goodness">
                 <h4 class="service-heading">Brian Goodness</h4>
               </a>
             </div>
-            <div class="col-xs-2">
+            <div class="col-sm-2">
                 <span>
-                  <img src="/static/imgs/team/deepa-kalpathi.gif"></img>
+                  <img src="/static/imgs/team/deepa-kalpathi.gif" class="img-responsive"></img>
                 </span>
                 <a target="_blank" href="https://www.ischool.berkeley.edu/people/deepa-kalpathi">
                 <h4 class="service-heading">Deepa Kalpathi</h4>
               </a>
             </div>
-            <div class="col-xs-2">
+            <div class="col-sm-2">
                 <span>
-                  <img src="/static/imgs/team/eric-hagen.jpg"></img>
+                  <img src="/static/imgs/team/eric-hagen.jpg" class="img-responsive"></img>
                 </span>
                 <a target="_blank" href="https://www.ischool.berkeley.edu/people/eric-hagen">
                 <h4 class="service-heading">Eric Hagen</h4>
               </a>
             </div>
-            <div class="col-xs-2">
+            <div class="col-sm-2">
                 <span>
-                  <img src="/static/imgs/team/surendran-subbiah.png"></img>
+                  <img src="/static/imgs/team/surendran-subbiah.png" class="img-responsive"></img>
                 </span>
                 <a target="_blank" href="https://www.ischool.berkeley.edu/people/surendran-subbiah">
                 <h4 class="service-heading">Surendran Subbiah</h4>

@@ -111,7 +111,7 @@
               Project Bhoomi is intended as a contribution to the world of International Development.
               Traditional sources of information, such as census data, are often out of date
               in the developing world and thus are not representative of current conditions.
-              This paucity of infomration has afforded an opportunity for researchers to
+              This paucity of information has afforded an opportunity for researchers to
               explore the possibility of supplementing traditional data sources with new forms
               of digital data.
             </div>
@@ -121,8 +121,8 @@
               a PhD student at Stanford. Jean has demonstrated the power of applying machine learning
               algorithms on satellite imagery in order to determine economic conditions in Sub Saharan
               Africa. We have worked to reproduce Jean's work, and to create an interactive information
-              portal that could be used by stakeholders and decision makers in the Internation Development
-              and Internation Aid arenas.
+              portal that could be used by stakeholders and decision makers in the International Development
+              and International Aid arenas.
             </div>
         </div>
     </div>
@@ -148,7 +148,7 @@
                 </span>
                 <h4 class="service-heading">Daylight Satellite Imagery</h4>
                 <p class="text-muted">The majority of data used in this project is  daylight satellite imagery. We currently
-                have more than 4 million satellite images, comprising the entirety of the countries
+                have nearly 3 million satellite images, comprising the entirety of the countries
                 Rwanda, Ghana, Tanzania, and Malawi.</p>
             </div>
             <div class="col-md-4">
@@ -159,7 +159,7 @@
                 <span>
                   <img src={% static 'imgs/night.png' %} class="img-responsive"></img>
                 </span>
-                <h4 class="service-heading">Nighlight Satellite Imagery</h4>
+                <h4 class="service-heading">Nightlight Satellite Imagery</h4>
                 <p class="text-muted"> We also use 'nightlights' data, which is satellite
                 imagery of the planet at night.</p>
             </div>
@@ -171,7 +171,7 @@
                   <img src={% static 'imgs/dhs.png' %} class="img-responsive"></img>
                 </span>
                 <h4 class="service-heading">Survey Data</h4>
-                <p class="text-muted">In addition, we are using Demograhpic and Health Survey (DHS) data. This data provides
+                <p class="text-muted">In addition, we are using Demographic and Health Survey (DHS) data. This data provides
                 us with 'ground truth' information that allows us to evaluate the performance of our
                 machine learning and regression models.</p>
             </div>
@@ -197,9 +197,10 @@
                   <img src={% static 'imgs/day.jpg' %}></img>
                 </span> -->
                 <h4 class="service-heading">Machine Learning</h4>
-                <p class="text-muted">The majority of data used in this project is  daylight satellite imagery. We currently
-                have more than 4 million satellite images, comprising the entirety of the countries
-                Rwanda, Ghana, Tanzania, and Malawi.</p>
+                <p class="text-muted">Accepting nighlight satellite imagery as a proxy for wealth, we take a
+                pre-trained convolutional neural net and use it to extract features of daylight satellite imagery that
+                are predictive of an area's wealth. Once the features are extracted, we are able to use them to run a regression
+                in order to predict the wealth of different regions.</p>
             </div>
             <div class="col-md-4">
                 <span class="fa-stack fa-4x">
@@ -210,8 +211,8 @@
                   <img src={% static 'imgs/night.png' %}></img>
                 </span> -->
                 <h4 class="service-heading">User Research</h4>
-                <p class="text-muted"> A thorough research process with included both secondary and primary research,
-                to be better understand the development space. The research process continued with contextual inquiries,
+                <p class="text-muted"> A thorough research process which included both secondary and primary research,
+                to better understand the development space. The research process continued with contextual inquiries,
                 interviews, and usability testing of our demo as the project progressed.</p>
             </div>
             <div class="col-md-4">
@@ -225,19 +226,19 @@
                 </span> -->
                 <h4 class="service-heading">Website Development</h4>
                 <p class="text-muted">Occurring concurrently with the user research, this interactive website
-                was developed. This iterative process took our concept from the initial wireframe to thead
+                was developed. This iterative process took our concept from the initial wireframe to the
                 working demo you see today.</p>
             </div>
         </div>
     </div>
 </section>
 
-<section id="application">
+<!-- <section id="application">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Application and Results</h2>
-                <!-- <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3> -->
+
             </div>
         </div>
         <div class="row text-center">
@@ -246,9 +247,7 @@
                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                     <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
                 </span>
-                <!-- <span>
-                  <img src={% static 'imgs/day.jpg' %}></img>
-                </span> -->
+
                 <h4 class="service-heading">Machine Learning</h4>
                 <p class="text-muted">Accepting nighlight satellite imagery as a proxy for wealth, we take a
                 pre-trained convolutional neural net and use it to learn features of daylight satellite imagery that
@@ -260,9 +259,7 @@
                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                     <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
                 </span>
-                <!-- <span>
-                  <img src={% static 'imgs/night.png' %}></img>
-                </span> -->
+
                 <h4 class="service-heading">User Research</h4>
                 <p class="text-muted"> A thorough research process with included both secondary and primary research,
                 to be better understand the development space. The research process continued with contextual inquiries,
@@ -270,12 +267,10 @@
             </div>
             <div class="col-md-4">
                 <span class="fa-stack fa-4x"> -->
-                  <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                  <!-- <i class="fa fa-circle fa-stack-2x text-primary"></i>
                   <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
                 </span>
-                <!-- <span>
-                  <img src={% static 'imgs/dhs.png' %}></img>
-                </span> -->
+
                 <h4 class="service-heading">Website Development</h4>
                 <p class="text-muted">Occurring concurrently with the user research, this interactive website
                 was developed. This iterative process took our concept from the initial wireframe to thead
@@ -283,7 +278,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 
 <section id="team">

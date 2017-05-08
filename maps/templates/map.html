@@ -361,11 +361,24 @@
     //slider for administrative region details:
     var admin_level = new Slider("#slider-admin-level", {
         ticks: [1, 2, 3],
-        value: 1,
+        value: {{ admin_level }},
         orientation: 'vertical',
         tooltip_position:'right',
         formatter: function(value) {
             return 'Admin Level ' + value;
+        }
+    });
+
+    var originalVal;
+
+    $('#slider-admin-level').on('slideStart', function(ev){
+        originalVal = $('#slider-admin-level').val();
+    });
+
+    $('#slider-admin-level').on('slideStop', function(ev){
+        var newVal = $('#slider-admin-level').val();
+        if(originalVal != newVal) {
+            location.href = "{% url 'map' country %}" + "/level-" + newVal;
         }
     });
 

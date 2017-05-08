@@ -24,7 +24,7 @@ from maps.models import Cell_Prediction, DHS_cluster, Region
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', maps_views.index, name='home'),
-    url(r'^about$', maps_views.about, name='about'),
+    url(r'^about-bhoomi$', maps_views.about, name='about'),
     url(r'^(?P<country>[a-z]+)(?:/)?$', maps_views.map, name='map'),
     url(r'^(?P<country>[a-z]+)(?:/level-(?P<admin_level>[1-3]{1}))(?:/)?$', maps_views.map, name='map'),
     url(r'^dhs-data.geojson?.*$', maps_views.DHS_ClusterLayer.as_view(model=DHS_cluster, properties=('country','data_year','dhs_wealth_idx','latitude','longitude')), name='dhs-clusters-data-country'),

@@ -218,13 +218,13 @@
         "type": "circle",
         "source": {
             "type": "geojson",
-            "data": 'dhs-data.geojson?country={{ country }}'
+            "data": '/dhs-data.geojson?country={{ country }}'
           },
         "layout": {
                     'visibility': 'visible'
           },
         'paint': {
-          'circle-radius': 3,
+          'circle-radius': 5,
           //'circle-color': 'rgba(55,148,179,1)'
           'circle-color':'#43a2ca'
         }
@@ -350,13 +350,13 @@
     }
 
     //download button.
-    var dowload_link = document.createElement('a');
-    dowload_link.href = 'download/{{country}}/1';
-    dowload_link.className = 'active';
-    dowload_link.textContent = "Download";
+    var download_link = document.createElement('a');
+    download_link.href = "{% url 'download' country admin_level %}";
+    download_link.className = 'active';
+    download_link.textContent = "Download";
 
     var download_nav = document.getElementById('download');
-    download_nav.appendChild(dowload_link);
+    download_nav.appendChild(download_link);
 
     //slider for administrative region details:
     var admin_level = new Slider("#slider-admin-level", {

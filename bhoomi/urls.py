@@ -25,10 +25,10 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', maps_views.index, name='home'),
     url(r'^about$', maps_views.about, name='about'),
-    url(r'^(?P<country>[a-z]+)$', maps_views.map, name='map'),
+    url(r'^(?P<country>[a-z]+)/(?P<admin_level>[1-3]{1})$', maps_views.map, name='map'),
     url(r'^dhs-data.geojson?.*$', maps_views.DHS_ClusterLayer.as_view(model=DHS_cluster, properties=('country','data_year','dhs_wealth_idx','latitude','longitude')), name='dhs-clusters-data-country'),
     url(r'^dhs-data$', GeoJSONLayerView.as_view(model=DHS_cluster, properties=('country','data_year','dhs_wealth_idx','latitude','longitude')), name='dhs-clusters-data'),
     url(r'^regions-data.geojson?.*$', maps_views.RegionLayer.as_view(model=Region, properties=('country','name','predicted_wealth_idx','wealth_decile','admin_level')), name='regions-predictions-data-country'),
     url(r'^regions-data/$', GeoJSONLayerView.as_view(model=Region, properties=('country','name','predicted_wealth_idx','wealth_decile','admin_level')), name='regions-predictions-data'),
     url(r'^cell-predictions.geojson?.*$', maps_views.Cell_PredictionLayer.as_view(model=Cell_Prediction, properties=('country','i','j','predicted_wealth_idx')), name='cell-predictions-data-country'),
-    url(r'^download/(?P<country>[a-z]+)/(?P<admin_level>[1-9]+)$', maps_views.download, name='download'),]
+    url(r'^download/(?P<country>[a-z]+)/(?P<admin_level>[1-3]{1})$', maps_views.download, name='download'),]

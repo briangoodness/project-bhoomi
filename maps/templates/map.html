@@ -138,7 +138,8 @@
 
 <style>
   #download {
-      background: #fff;
+      background: #BF3F3F;
+      color: #ffffff;
       position: absolute;
       z-index: 1;
       top: 120px;
@@ -149,9 +150,9 @@
       font-family: 'Open Sans', sans-serif;
   }
 
-  #download a {
+  #download {
       font-size: 13px;
-      color: #404040;
+      color: #ffffff;
       display: block;
       margin: 0;
       padding: 0;
@@ -161,22 +162,8 @@
       text-align: center;
   }
 
-  #download a:last-child {
-      border: none;
-  }
-
-  #download a:hover {
-      background-color: #f8f8f8;
-      color: #404040;
-  }
-
-  #download a.active {
-      background-color: #BF3F3F;
-      color: #ffffff;
-  }
-
-  #download a.active:hover {
-      background: #722626;
+  #download:hover {
+      background-color: #722626;
   }
 </style>
 
@@ -205,7 +192,10 @@
 
   <nav id="menu"></nav>
 
-  <nav id="download"></nav>
+  <form method="get" action="{% url 'download' country admin_level %}">
+      <input type="hidden" name="selected_regions" id="selected_regions" value="" />
+      <input type="submit" id="download" value="Download" />
+  </form>
 
   <script>
 
@@ -261,6 +251,8 @@
       //maxBounds: new mapboxgl.LngLatBounds([left, top], [right, bottom]) // maximum map bounds
     });
     map.on('load', function () {
+      //start with clear selected filter.
+      map.setFilter("selected", ['in', 'name']);
       map.addLayer(clusterCenters);
       //map.addLayer(regionPredictions);
 
@@ -297,6 +289,33 @@
         document.getElementById('pd').innerHTML = '';
         document.getElementById('features').classList.add("display-none");
       }
+    });
+
+    var filtered_regions = new Array();
+
+    map.on('click', function(e) {
+        //selecting regions on map.
+        var layers = ['low-wealth', 'medium-wealth', 'high-wealth']
+        var features = map.queryRenderedFeatures(e.point, { layers: layers });
+
+        if(features.length > 0){
+            var exists = filtered_regions.indexOf(features[0].properties.name)
+            if(exists < 0){
+                filtered_regions.push(features[0].properties.name);
+            }
+            else{
+                filtered_regions.splice(exists, features[0].properties.name.length);
+            }
+
+            var filter = ['in', 'name']
+            for(i = 0; i < filtered_regions.length; i++){
+                filter.push(filtered_regions[i]);
+            }
+
+            map.setFilter("selected", filter);
+
+            $('#selected_regions').val(filtered_regions.toString())
+        }
     });
 
     // retrieve map style
@@ -350,13 +369,13 @@
     }
 
     //download button.
-    var download_link = document.createElement('a');
-    download_link.href = "{% url 'download' country admin_level %}";
-    download_link.className = 'active';
-    download_link.textContent = "Download";
+    //var download_link = document.createElement('a');
+    //download_link.href = "{% url 'download' country admin_level %}";
+    //download_link.className = 'active';
+    //download_link.textContent = "Download";
 
-    var download_nav = document.getElementById('download');
-    download_nav.appendChild(download_link);
+    //var download_nav = document.getElementById('download');
+    //download_nav.appendChild(download_link);
 
     //slider for administrative region details:
     var admin_level = new Slider("#slider-admin-level", {

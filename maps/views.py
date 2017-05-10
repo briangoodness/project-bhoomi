@@ -38,7 +38,7 @@ country_level_centers = {
 country_styles = {
     'ghana':'mapbox://styles/briangoodness/cj1wia7ax00162smrphmw1pp9',
     'malawi':'mapbox://styles/briangoodness/cj1wia7ax00162smrphmw1pp9',
-    'rwanda':'mapbox://styles/briangoodness/cj1wu823l00132roe3duzgxcc',
+    'rwanda':'mapbox://styles/briangoodness/cj2im2r0o002b2rqngz8ms7ze',
     'tanzania':'mapbox://styles/briangoodness/cj1wtzuzy001f2rozj7duibm4',
 }
 country_level_styles = {
@@ -50,8 +50,8 @@ country_level_styles = {
         1:'mapbox://styles/briangoodness/cj1wia7ax00162smrphmw1pp9',
         2:'mapbox://styles/briangoodness/cj1wia7ax00162smrphmw1pp9',
         3:'mapbox://styles/briangoodness/cj1wia7ax00162smrphmw1pp9',},
-    'rwanda':{0:'mapbox://styles/briangoodness/cj1wu823l00132roe3duzgxcc',
-        1:'mapbox://styles/briangoodness/cj1wu823l00132roe3duzgxcc',
+    'rwanda':{0:'mapbox://styles/briangoodness/cj2im2r0o002b2rqngz8ms7ze',
+        1:'mapbox://styles/briangoodness/cj2im2r0o002b2rqngz8ms7ze',
         2:'mapbox://styles/briangoodness/cj2fcsunk00432sqm7kbqlg6t',
         3:'mapbox://styles/briangoodness/cj2f93z0y003y2rukcbtc6kbt',},
     'tanzania':{0:'mapbox://styles/briangoodness/cj1wtzuzy001f2rozj7duibm4',
@@ -105,7 +105,16 @@ def download(request, country='rwanda', admin_level=1):
 
     admin_level = int(admin_level) # cast string to int from URL text
 
-    context = Region.objects.values_list('country', 'name', 'predicted_wealth_idx', 'wealth_decile', 'admin_level').filter(country=country, admin_level=admin_level)
+    #checking whether the user selected only a few regions.
+    selected_regions = request.GET.get('selected_regions', '')
+    print('regions: ' + selected_regions)
+
+    #if we need to filter the regions for download:
+    if selected_regions == '':
+        context = Region.objects.values_list('country', 'name', 'predicted_wealth_idx', 'wealth_decile', 'admin_level').filter(country=country, admin_level=admin_level)
+    else:
+        selected_regions = selected_regions.split(',')
+        context = Region.objects.values_list('country', 'name', 'predicted_wealth_idx', 'wealth_decile', 'admin_level').filter(country=country, admin_level=admin_level, name__in=selected_regions)
 
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="data-'+country+'-admin_level-'+str(admin_level)+'.csv"'

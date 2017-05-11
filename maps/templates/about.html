@@ -165,19 +165,15 @@
                 <!-- <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3> -->
             </div>
         </div>
-        <div class="row text-center">
+        <div class="row text-center" style="max-height:170px;overflow:hidden;">
             <div class="col-md-4">
                 <!-- <span class="fa-stack fa-4x">
                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                     <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
                 </span> -->
                 <span>
-                  <img src={% static 'imgs/day.jpg' %} class="img-responsive" style="max-height:220px"></img>
+                  <img src={% static 'imgs/day.jpg' %} class="img-responsive" style="width: 100%;"></img>
                 </span>
-                <h4 class="service-heading">Daylight Satellite Imagery</h4>
-                <p class="text-muted">The majority of data used in this project is  daylight satellite imagery. We currently
-                have nearly 3 million satellite images, comprising the entirety of the countries
-                Rwanda, Ghana, Tanzania, and Malawi.</p>
             </div>
             <div class="col-md-4">
                 <!-- <span class="fa-stack fa-4x">
@@ -185,19 +181,31 @@
                     <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
                 </span> -->
                 <span>
-                  <img src={% static 'imgs/night.png' %} class="img-responsive" style="min-height:220px"></img>
+                  <img src={% static 'imgs/night.png' %} class="img-responsive" style="width: 100%;"></img>
                 </span>
+            </div>
+            <div class="col-md-4" style="height: 100%; background-color: #ffffff;">
+                <!-- <span class="fa-stack fa-4x"> -->
+                    <!-- <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-lock fa-stack-1x fa-inverse"></i> -->
+                <span>
+                  <img src={% static 'imgs/dhs.png' %} class="img-responsive" style="width: 100%;"></img>
+                </span>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <h4 class="service-heading">Daylight Satellite Imagery</h4>
+                <p class="text-muted">The majority of data used in this project is  daylight satellite imagery. We currently
+                have nearly 3 million satellite images, comprising the entirety of the countries
+                Rwanda, Ghana, Tanzania, and Malawi.</p>
+            </div>
+            <div class="col-md-4">
                 <h4 class="service-heading">Nightlight Satellite Imagery</h4>
                 <p class="text-muted"> We also use 'nightlights' data, which is satellite
                 imagery of the planet at night.</p>
             </div>
             <div class="col-md-4">
-                <!-- <span class="fa-stack fa-4x"> -->
-                    <!-- <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                    <i class="fa fa-lock fa-stack-1x fa-inverse"></i> -->
-                <span>
-                  <img src={% static 'imgs/dhs.png' %} class="img-responsive" style="min-height:220px"></img>
-                </span>
                 <h4 class="service-heading">Survey Data</h4>
                 <p class="text-muted">In addition, we are using Demographic and Health Survey (DHS) data. This data provides
                 us with 'ground truth' information that allows us to evaluate the performance of our

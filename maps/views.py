@@ -38,7 +38,7 @@ country_level_centers = {
 country_styles = {
     'ghana':'mapbox://styles/briangoodness/cj1wia7ax00162smrphmw1pp9',
     'malawi':'mapbox://styles/briangoodness/cj1wia7ax00162smrphmw1pp9',
-    'rwanda':'mapbox://styles/briangoodness/cj2im2r0o002b2rqngz8ms7ze',
+    'rwanda':'mapbox://styles/briangoodness/cj1wu823l00132roe3duzgxcc',
     'tanzania':'mapbox://styles/briangoodness/cj1wtzuzy001f2rozj7duibm4',
 }
 country_level_styles = {
@@ -50,8 +50,8 @@ country_level_styles = {
         1:'mapbox://styles/briangoodness/cj1wia7ax00162smrphmw1pp9',
         2:'mapbox://styles/briangoodness/cj1wia7ax00162smrphmw1pp9',
         3:'mapbox://styles/briangoodness/cj1wia7ax00162smrphmw1pp9',},
-    'rwanda':{0:'mapbox://styles/briangoodness/cj2im2r0o002b2rqngz8ms7ze',
-        1:'mapbox://styles/briangoodness/cj2im2r0o002b2rqngz8ms7ze',
+    'rwanda':{0:'mapbox://styles/briangoodness/cj1wu823l00132roe3duzgxcc',
+        1:'mapbox://styles/briangoodness/cj1wu823l00132roe3duzgxcc',
         2:'mapbox://styles/briangoodness/cj2fcsunk00432sqm7kbqlg6t',
         3:'mapbox://styles/briangoodness/cj2f93z0y003y2rukcbtc6kbt',},
     'tanzania':{0:'mapbox://styles/briangoodness/cj1wtzuzy001f2rozj7duibm4',

@@ -14,7 +14,7 @@ import getopt
 # print-out help / instructions
 def help():
     print('\nusage:')
-    print('use --file = for setting the path to the DHS wealth indices file (CSV).')
+    print('use --file = for setting the path to the regional shape file.')
     print('use --country = for setting the country name\n')
 
 # run main

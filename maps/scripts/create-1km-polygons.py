@@ -232,15 +232,15 @@ def main(argv):
             cells[counter]['i'] = top_idx + i
             cells[counter]['j'] = left_idx + j
 
-            cells[counter]['top_left_y_coords']= nightlights['corners']['top_left_y_coords'][i]
-            cells[counter]['top_right_y_coords']= nightlights['corners']['top_right_y_coords'][i]
-            cells[counter]['bottom_left_y_coords']= nightlights['corners']['bottom_left_y_coords'][i]
-            cells[counter]['bottom_right_y_coords']= nightlights['corners']['bottom_right_y_coords'][i]
+            cells[counter]['top_left_y_coords'] = nightlights['corners']['top_left_y_coords'][top_idx + i]
+            cells[counter]['top_right_y_coords'] = nightlights['corners']['top_right_y_coords'][top_idx + i]
+            cells[counter]['bottom_left_y_coords'] = nightlights['corners']['bottom_left_y_coords'][top_idx + i]
+            cells[counter]['bottom_right_y_coords'] = nightlights['corners']['bottom_right_y_coords'][top_idx + i]
 
-            cells[counter]['top_left_x_coords']= nightlights['corners']['top_left_x_coords'][j]
-            cells[counter]['top_right_x_coords']= nightlights['corners']['top_right_x_coords'][j]
-            cells[counter]['bottom_left_x_coords']= nightlights['corners']['bottom_left_x_coords'][j]
-            cells[counter]['bottom_right_x_coords']= nightlights['corners']['bottom_right_x_coords'][j]
+            cells[counter]['top_left_x_coords'] = nightlights['corners']['top_left_x_coords'][left_idx + j]
+            cells[counter]['top_right_x_coords'] = nightlights['corners']['top_right_x_coords'][left_idx + j]
+            cells[counter]['bottom_left_x_coords'] = nightlights['corners']['bottom_left_x_coords'][left_idx + j]
+            cells[counter]['bottom_right_x_coords'] = nightlights['corners']['bottom_right_x_coords'][left_idx + j]
 
             counter+=1
 
@@ -273,6 +273,13 @@ def main(argv):
     # create country, predicted_wealth_idx (for testing) columns
     gdf['country'] = country
     gdf['predicted_wealth_idx'] = 1.4
+
+    # once predictions are available:
+    # load CSV file with columns i, j, prediction (i.e., wealth index) into DataFrame
+    # merge wealth predictions ('predicted_wealth_idx') based on i, j columns
+    # df_predictions = pd.read_csv('predictions-%s.csv' % country)
+    # pd.merge(gdf, df_predictions, left_on=['i','j'], right_on=['i','j'])
+    # note: print-out # of mismerges on i,j for country
 
     # sub-select columns
     cols = ['country','i','j','predicted_wealth_idx', 'geom']

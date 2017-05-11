@@ -306,16 +306,18 @@
             else{
                 filtered_regions.splice(exists, features[0].properties.name.length);
             }
-
-            var filter = ['in', 'name']
-            for(i = 0; i < filtered_regions.length; i++){
-                filter.push(filtered_regions[i]);
-            }
-
-            map.setFilter("selected", filter);
-
-            $('#selected_regions').val(filtered_regions.toString())
         }
+        else{
+            filtered_regions = [];
+        }
+        var filter = ['in', 'name'];
+        for(i = 0; i < filtered_regions.length; i++){
+            filter.push(filtered_regions[i]);
+        }
+
+        map.setFilter("selected", filter);
+
+        $('#selected_regions').val(filtered_regions.toString());
     });
 
     // retrieve map style
